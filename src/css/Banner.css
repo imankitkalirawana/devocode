@@ -1,0 +1,27 @@
+.banner {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 500px;
+  text-align: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.banner-title {
+  font-size: 72px;
+}
+
+.banner-text {
+  font-size: 16px;
+  color: var(--faded);
+}
+
+.banner .btns {
+  margin-top: 2rem;
+  grid-gap: 1rem;
+}
+
+.banner .btn {
+  padding: 1rem 2rem;
+}

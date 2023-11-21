@@ -1,0 +1,101 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1rem;
+}
+.section-title {
+  text-transform: capitalize;
+  font-size: 24px;
+}
+
+.section-contents {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1rem;
+}
+
+.section-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-around;
+  grid-gap: 1rem;
+}
+
+.section-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  grid-gap: 1rem;
+  background: var(--lighter);
+  padding: 1rem;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.section-list-item-mini-details {
+  width: 100px;
+  height: 100px;
+  background: var(--light);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-list-item-main-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  grid-gap: 0.7rem;
+  justify-self: flex-start;
+}
+
+.section-list-item-title {
+  text-transform: capitalize;
+  font-size: 18px;
+}
+
+.section-list-item-description {
+  font-size: 14px;
+  color: var(--faded);
+  font-weight: 400;
+}
+
+.section-list-item-btn {
+  margin-right: 1rem;
+}
+
+.section-list-item-btn i {
+  margin-right: 0.5rem;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  grid-gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.breadcrumbs-item {
+  font-size: 14px;
+  color: var(--faded);
+  font-weight: 400;
+}
+
+.breadcrumbs-item {
+  color: var(--faded);
+  font-weight: 400;
+}
+
+.breadcrumbs-item:hover {
+  color: var(--primary);
+}
+
+.breadcrumbs .selected {
+  text-transform: capitalize;
+  color: var(--dark);
+}

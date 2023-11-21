@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
+:root {
+  --primary: #5d74bb;
+  --secondary: #c7c8da;
+  --primary-hover: #34296e83;
+  --light: #e9f7f7;
+  --lighter: #e0edef;
+  --dark: #1d2429;
+  --darker: #242c30;
+  --font-primary: "Outfit", sans-serif;
+  --font-secondary: "JetBrains Mono", sans-serif;
+  --faded: #8c8e90;
+  --border: #e5ebe9;
+  --light-const: #e9eef1;
+  --dark-const: #1d2429;
+  --bg-ambient: rgba(255, 255, 255, 0.318);
+  --blur: blur(300px);
+  --primary-light: #fff;
+  --ambient-box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+[data-theme="dark"] {
+  --primary: #508199;
+  --primary-hover: rgba(23, 61, 81, 0.455);
+  --secondary: #3e3f50;
+  --light: #1d2429;
+  --lighter: #242c30;
+  --dark: #e9f7f7;
+  --darker: #f9f9f9;
+  --font: "Outfit", sans-serif;
+  --faded: #999;
+  --border: #8b96a5;
+  --bg-ambient: #0f0f0f69;
+  --blur: blur(50px);
+  --primary-light: #508199;
+  --path: #fff;
+  --bg-faded: #18181a;
+  --ambient-box-shadow: rgba(255, 255, 255, 0.07) 0px 1px 1px 0px inset,
+    rgba(62, 31, 170, 0.04) 0px 50px 100px -20px,
+    rgba(157, 48, 172, 0.1) 0px 30px 60px -30px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--light);
+  color: var(--dark);
+  font-family: "Outfit", sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--dark);
+}
+
+/* custom common */
+.color {
+  color: var(--primary);
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  grid-gap: 0.5rem;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--primary);
+  background: var(--light);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--light);
+}
