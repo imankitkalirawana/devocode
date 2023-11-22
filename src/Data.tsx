@@ -98,8 +98,7 @@ const data = {
           name: "CSE205_Assignment1.pdf",
           unit: "Assignment 1",
           url: "https://devocode.com/images/devocode.png",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "",
         },
       ],
       ppts: [
@@ -108,8 +107,7 @@ const data = {
           name: "CSE205_PPT1.pdf",
           unit: "Unit 1",
           url: "https://devocode.com/images/devocode.png",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "",
         },
       ],
       mcqs: [
@@ -118,8 +116,7 @@ const data = {
           name: "CSE205_MCQ1.pdf",
           unit: "Unit 1",
           url: "https://devocode.com/images/devocode.png",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "",
         },
       ],
       ca: [
@@ -128,8 +125,7 @@ const data = {
           name: "CSE205_CA1.pdf",
           unit: "CA 1",
           url: "https://devocode.com/images/devocode.png",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "",
         },
       ],
       midterm: [
@@ -138,8 +134,7 @@ const data = {
           name: "CSE205_Midterm1.pdf",
           unit: "2023",
           url: "https://devocode.com/images/devocode.png",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "",
         },
       ],
       endterm: [
@@ -148,8 +143,7 @@ const data = {
           name: "CSE205_Endterm1.pdf",
           unit: "2023",
           url: "https://devocode.com/images/devocode.png",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "",
         },
       ],
     },
@@ -445,16 +439,14 @@ const data = {
           name: "CSE316_MCQ1.pdf",
           unit: "MCQ 1",
           url: "https://devocode.com/images/devocode.png",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "",
         },
         {
           id: "2",
           name: "CSE316_MCQ2.pdf",
           unit: "MCQ 2",
           url: "https://devocode.com/images/devocode.png",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "",
         },
       ],
       ca: [],

@@ -50,7 +50,7 @@ const Header = () => {
               </Link>
               <i className="fa-regular fa-angle-down"></i>
               <ul className="dropdown-list-items">
-                {data.subjects.map((subject, index) => (
+                {data.subjects.slice(0, 8).map((subject, index) => (
                   <li key={index} className="dropdown-list-items-item">
                     <Link
                       to={`/resources/${subject.code}`}
