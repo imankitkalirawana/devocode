@@ -161,16 +161,17 @@ const data = {
       url: "https://devocode.com",
       image: "https://devocode.com/images/devocode.png",
       folder: "CSE306",
-      syllabus: "CSE306_syllabus.pdf",
-      reference: [
-        "https://www.geeksforgeeks.org/computer-network-tutorials/",
-        "https://www.geeksforgeeks.org/computer-network-tutorials-set-2/",
-        "https://www.geeksforgeeks.org/computer-network-tutorials-set-3/",
-        "https://www.geeksforgeeks.org/computer-network-tutorials-set-4/",
+      syllabus: [
+        {
+          id: "1",
+          name: "CSE306_Syllabus.pdf",
+          unit: "Syllabus",
+          url: "https://devocode.com/images/devocode.png",
+          description: "",
+        },
       ],
-      moocs: [
-        "https://www.coursera.org/account/accomplishments/specialization/CSE306",
-      ],
+      reference: [],
+      moocs: [],
       //   files
       notes: [
         {

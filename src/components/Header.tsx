@@ -52,9 +52,13 @@ const Header = () => {
           </ul>
         </nav>
         {/* login register buttons */}
-        <div className="btns">
+        <div className="btns login-register">
           <button className="btn login-btn">Login</button>
           <button className="btn btn-primary register-btn">Register</button>
+        </div>
+        {/* Toggler */}
+        <div className="toggler">
+          <i className="fa-regular fa-bars-staggered"></i>
         </div>
       </header>
     </>

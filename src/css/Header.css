@@ -68,9 +68,27 @@
   background: var(--lighter);
 }
 
+.toggler {
+  display: flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  display: none;
+}
+
+.toggler i {
+  font-size: 24px;
+}
+
 @media (max-width: 820px) {
   .list-items {
     display: none;
+  }
+  .header .login-register {
+    display: none;
+  }
+  .toggler {
+    display: flex;
   }
 }
 

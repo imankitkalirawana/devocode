@@ -59,7 +59,11 @@ const ResourcesHome = ({ subjects }: Props) => {
                     .includes(searchQuery.toLowerCase())
               )
               .map((subject, index) => (
-                <li key={index} className="section-list-item">
+                <Link
+                  to={`/resources/${subject.code}`}
+                  key={index}
+                  className="section-list-item"
+                >
                   <div className="section-list-item-mini-details">
                     <i className="fas fa-book"></i>
                   </div>
@@ -77,7 +81,7 @@ const ResourcesHome = ({ subjects }: Props) => {
                       View
                     </Link>
                   </div>
-                </li>
+                </Link>
               ))}
           </div>
         </div>

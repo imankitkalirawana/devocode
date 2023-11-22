@@ -9,6 +9,8 @@ const fileNames = [
   "midterm",
   "endterm",
   "notes",
+  "syllabus",
+  "moocs",
 ];
 
 const ResourcesDetails = () => {
@@ -61,7 +63,11 @@ const ResourcesDetails = () => {
       <div className="section-content">
         <div className="section-menu">
           {fileNames.sort().map((file, index) => (
-            <li key={index} className="section-list-item">
+            <Link
+              to={`/resources/${selectedSubject.code}/${file}`}
+              key={index}
+              className="section-list-item"
+            >
               <div className="section-list-item-mini-details">
                 <i className="fas fa-book"></i>
               </div>
@@ -82,7 +88,7 @@ const ResourcesDetails = () => {
                   View
                 </Link>
               </div>
-            </li>
+            </Link>
           ))}
         </div>
       </div>

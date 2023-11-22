@@ -156,7 +156,12 @@ const Files: React.FC = () => {
                   file.unit.toLowerCase().includes(searchQuery.toLowerCase())
                 )
                 .map((file, index) => (
-                  <li key={index} className="section-list-item">
+                  <a
+                    href={`/resources/${selectedSubject.folder}/${file.name}`}
+                    download
+                    key={index}
+                    className="section-list-item"
+                  >
                     <div className="section-list-item-mini-details">
                       <i className="fas fa-book"></i>
                     </div>
@@ -176,7 +181,7 @@ const Files: React.FC = () => {
                         Download
                       </a>
                     </div>
-                  </li>
+                  </a>
                 ))}
             </div>
           ) : (

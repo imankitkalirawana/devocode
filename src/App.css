@@ -116,3 +116,16 @@
 .section-error img {
   width: 100%;
 }
+
+@media (max-width: 640px) {
+  .section-list-item {
+    justify-content: start;
+  }
+
+  .section-list-item-main-details {
+    align-items: start;
+  }
+  .section-list-item-btn {
+    display: none;
+  }
+}
