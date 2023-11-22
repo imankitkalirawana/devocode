@@ -6,6 +6,7 @@ import data from "./Data";
 import Resources from "./components/Resources";
 import ResourcesDetails from "./components/ResourcesDetails";
 import Files from "./components/Files";
+import WarningPopup from "./components/WarningPopup";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             element={
               <>
                 <Banner />
+                <WarningPopup />
               </>
             }
           />

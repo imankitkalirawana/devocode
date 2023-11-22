@@ -11,7 +11,7 @@ const Banner = () => {
         </p>
         <div className="btns">
           <Link to="/resources" className="btn btn-primary">
-            Explore!
+            Resources
           </Link>
           <a href="https://github.com/imankitkalirawana" className="btn">
             Developer

@@ -128,12 +128,31 @@ const Header = () => {
               About
             </a>
           </li>
-          {/* resouces dropdown */}
           <li className="sidebar-list-item">
             <Link to="/resources" className="sidebar-list-link">
               <i className="fa-regular fa-book"></i>
               Resources
             </Link>
+          </li>
+          <li className="sidebar-list-item">
+            <a
+              className="sidebar-list-link"
+              href="https://github.com/imankitkalirawana"
+            >
+              <i className="fa-brands fa-github"></i>
+              Github
+            </a>
+          </li>
+          <li className="sidebar-list-item">
+            <a
+              className="sidebar-list-link"
+              href="
+              https://github.com/imankitkalirawana/devocode/issues"
+              target="_blank"
+            >
+              <i className="fa-regular fa-bug"></i>
+              Report Issue
+            </a>
           </li>
         </ul>
       </aside>
