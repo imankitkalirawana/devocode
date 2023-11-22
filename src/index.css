@@ -63,7 +63,8 @@ a {
   color: var(--dark);
 }
 
-input {
+input,
+textarea {
   outline: none;
   border: 2px solid var(--lighter);
   border-radius: 8px;
@@ -75,11 +76,13 @@ input {
   transition: all 0.3s ease-in-out;
 }
 
-input:hover {
+input:hover,
+textarea:hover {
   border: 2px solid var(--border);
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   border: 2px solid var(--primary);
 }
 

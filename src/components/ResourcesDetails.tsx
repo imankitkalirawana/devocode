@@ -37,8 +37,8 @@ const ResourcesDetails = () => {
         <div className="section-error">
           <img src="/error404.png" alt="" />
           <p>
-            Oops!!! Seems like you're trying to access a subject that doesn't
-            exist...
+            Oops!!! The Subject you are trying to search for will be availabe
+            soon...
           </p>
         </div>
       </div>

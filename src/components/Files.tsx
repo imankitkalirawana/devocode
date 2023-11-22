@@ -46,10 +46,7 @@ const Files: React.FC = () => {
         </div>
         <div className="section-error">
           <img src="/error404.png" alt="" />
-          <p>
-            Oops!!! Seems like you're trying to access a subject that doesn't
-            exist...
-          </p>
+          <p>The content you are trying to access will be available soon...</p>
         </div>
       </div>
     );
@@ -75,10 +72,7 @@ const Files: React.FC = () => {
         </div>
         <div className="section-error">
           <img src="/error404.png" alt="" />
-          <p>
-            Oops!!! Seems like you're trying to access a subject that doesn't
-            exist...
-          </p>
+          <p>The content you are trying to access will be available soon...</p>
         </div>
       </div>
     );
@@ -106,13 +100,7 @@ const Files: React.FC = () => {
         </div>
         <div className="section-error">
           <img src="/error404.png" alt="" />
-          <p>
-            Oops!!! It looks like there aren't enough{" "}
-            {fileName.toLowerCase().endsWith("s")
-              ? fileName.toUpperCase()
-              : `${fileName.toUpperCase()}s`}{" "}
-            to display...
-          </p>
+          <p>The content you are trying to access will be available soon...</p>
         </div>
       </div>
     );
@@ -187,7 +175,9 @@ const Files: React.FC = () => {
           ) : (
             <div className="section-error">
               <img src="/error404.png" alt="" />
-              <h1>No data found</h1>
+              <p>
+                The content you are trying to access will be available soon...
+              </p>
             </div>
           )}
         </div>
