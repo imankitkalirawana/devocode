@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   grid-gap: 1rem;
+  padding: 25px;
 }
 .section-title {
   text-transform: capitalize;
@@ -48,7 +49,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: start;
+  align-items: center;
   grid-gap: 0.7rem;
   justify-self: flex-start;
 }
@@ -98,4 +99,20 @@
 .breadcrumbs .selected {
   text-transform: capitalize;
   color: var(--dark);
+}
+
+.section .input {
+  max-width: 300px;
+}
+
+.section-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.section-error img {
+  width: 100%;
 }

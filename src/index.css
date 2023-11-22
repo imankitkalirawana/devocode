@@ -63,6 +63,26 @@ a {
   color: var(--dark);
 }
 
+input {
+  outline: none;
+  border: 2px solid var(--lighter);
+  border-radius: 8px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: var(--dark);
+  background: var(--lighter);
+  font-family: "Outfit", sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+
+input:hover {
+  border: 2px solid var(--border);
+}
+
+input:focus {
+  border: 2px solid var(--primary);
+}
+
 /* custom common */
 .color {
   color: var(--primary);

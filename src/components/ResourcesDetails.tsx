@@ -19,7 +19,28 @@ const ResourcesDetails = () => {
   );
 
   if (!selectedSubject) {
-    return <h1>No Subject found</h1>;
+    return (
+      <div className="section resources">
+        <div className="breadcrumbs">
+          <Link className="breadcrumbs-item" to="/">
+            Home
+          </Link>
+          <i className="fas fa-chevron-right breadcrumbs-item"></i>
+          <Link className="breadcrumbs-item" to="/resources">
+            Subjects
+          </Link>
+          <i className="fas fa-chevron-right breadcrumbs-item"></i>
+          <span className="breadcrumbs-item selected">{subjectCode}</span>
+        </div>
+        <div className="section-error">
+          <img src="/error404.png" alt="" />
+          <p>
+            Oops!!! Seems like you're trying to access a subject that doesn't
+            exist...
+          </p>
+        </div>
+      </div>
+    );
   }
 
   return (

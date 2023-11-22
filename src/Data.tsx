@@ -28,7 +28,7 @@ const data = {
       description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
       url: "https://devocode.com",
       image: "https://devocode.com/images/devocode.png",
-      folder: "/cse205/",
+      folder: "CSE205",
       syllabus: "CSE205_syllabus.pdf",
       reference: [
         "https://www.geeksforgeeks.org/data-structure-and-algorithms/",
@@ -43,19 +43,53 @@ const data = {
       notes: [
         {
           id: "1",
-          name: "CSE205_Unit1.pdf",
-          unit: "Unit 1",
+          name: "Array_Traversal.cpp",
+          unit: "Array Traversal",
           url: "https://devocode.com/images/devocode.png",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "C++ Code for Array Traversal",
         },
         {
           id: "2",
-          name: "CSE205_Unit2.pdf",
-          unit: "Unit 2",
+          name: "Array_2DArray.cpp",
+          unit: "2D Array",
           url: "https://devocode.com/images/devocode.png",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+            "C++ Code for 2D Array Traversal and Printing the Elements",
+        },
+        {
+          id: "3",
+          name: "Array_Insertion.cpp",
+          unit: "Array Insertion",
+          url: "https://devocode.com/images/devocode.png",
+          description: "C++ Code for Array Insertion",
+        },
+        {
+          id: "4",
+          name: "Array_Deletion.cpp",
+          unit: "Array Deletion",
+          url: "https://devocode.com/images/devocode.png",
+          description: "C++ Code for Array Deletion",
+        },
+        {
+          id: "5",
+          name: "Array_Merging.cpp",
+          unit: "Array Merging",
+          url: "https://devocode.com/images/devocode.png",
+          description: "C++ Code for Array Merging",
+        },
+        {
+          id: "6",
+          name: "Array_LinearSearching.cpp",
+          unit: "Array Linear Searching",
+          url: "https://devocode.com/images/devocode.png",
+          description: "C++ Code for Array Linear Searching",
+        },
+        {
+          id: "7",
+          name: "Array_BinarySearch.cpp",
+          unit: "Array Binary Searching",
+          url: "https://devocode.com/images/devocode.png",
+          description: "C++ Code for Array Binary Searching",
         },
       ],
       assignments: [
@@ -126,7 +160,7 @@ const data = {
       description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
       url: "https://devocode.com",
       image: "https://devocode.com/images/devocode.png",
-      folder: "/cse306/",
+      folder: "CSE306",
       syllabus: "CSE306_syllabus.pdf",
       reference: [
         "https://www.geeksforgeeks.org/computer-network-tutorials/",
@@ -141,40 +175,49 @@ const data = {
       notes: [
         {
           id: "1",
-          name: "CSE306_Unit1.pdf",
+          name: "CSE306_Unit1_Notes.zip",
           unit: "Unit 1",
           url: "https://devocode.com/images/devocode.png",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Introduction and Network Models",
         },
         {
           id: "2",
-          name: "CSE306_Unit2.pdf",
+          name: "CSE306_Unit2_Notes.zip",
           unit: "Unit 2",
           url: "https://devocode.com/images/devocode.png",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Physical Layer",
         },
-      ],
-      assignments: [
         {
-          id: "1",
-          name: "CSE306_Assignment1.pdf",
+          id: "3",
+          name: "CSE306_Unit3_Notes.zip",
+          unit: "Unit 3",
           url: "https://devocode.com/images/devocode.png",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Data Link Layer",
         },
-      ],
-      ppts: [
         {
-          id: "1",
-          name: "CSE306_PPT1.pdf",
-          unit: "Unit 1",
+          id: "4",
+          name: "CSE306_Unit4_Notes.zip",
+          unit: "Unit 4",
           url: "https://devocode.com/images/devocode.png",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Network Layer: IP Addressing",
+        },
+        {
+          id: "5",
+          name: "CSE306_Unit5_Notes.zip",
+          unit: "Unit 5",
+          url: "https://devocode.com/images/devocode.png",
+          description: "Network Layer: Routing",
+        },
+        {
+          id: "6",
+          name: "CSE306_Unit6_Notes.zip",
+          unit: "Unit 6",
+          url: "https://devocode.com/images/devocode.png",
+          description: "Transport Layer",
         },
       ],
+      assignments: [],
+      ppts: [],
       mcqs: [
         {
           id: "1",
@@ -182,36 +225,52 @@ const data = {
           unit: "Unit 1",
           url: "https://devocode.com/images/devocode.png",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
-        },
-      ],
-      ca: [
-        {
-          id: "1",
-          name: "CSE306_CA1.pdf",
-          url: "https://devocode.com/images/devocode.png",
-          description:
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
         },
       ],
+      ca: [],
       midterm: [
         {
           id: "1",
-          name: "CSE306_Midterm1.pdf",
+          name: "CSE306_MTE1.zip",
+          unit: "MTE 1",
           url: "https://devocode.com/images/devocode.png",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "",
+        },
+        {
+          id: "2",
+          name: "CSE306_MTE2.zip",
+          unit: "MTE 2",
+          url: "https://devocode.com/images/devocode.png",
+          description: "",
+        },
+        {
+          id: "3",
+          name: "CSE306_MTE3.zip",
+          unit: "MTE 3",
+          url: "https://devocode.com/images/devocode.png",
+          description: "",
         },
       ],
       endterm: [
         {
           id: "1",
-          name: "CSE306_Endterm1.pdf",
+          name: "CSE306_ETE1.zip",
+          unit: "ETE 1",
           url: "https://devocode.com/images/devocode.png",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "",
         },
       ],
+    },
+    {
+      id: "2",
+      code: "CSE211",
+      title: "Computer Organisation & Design",
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+      url: "https://devocode.com",
+      image: "https://devocode.com/images/devocode.png",
+      folder: "CSE211",
+      syllabus: "CSE211_syllabus.pdf",
     },
   ],
 };
