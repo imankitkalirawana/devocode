@@ -27,6 +27,9 @@ type Props = {
 const ResourcesHome = ({ subjects }: Props) => {
   const [searchQuery, setSearchQuery] = useState("");
 
+  // sort subjects
+  subjects.sort((a, b) => (a.code > b.code ? 1 : -1));
+
   return (
     <>
       <div className="section resources">
@@ -65,13 +68,13 @@ const ResourcesHome = ({ subjects }: Props) => {
                   className="section-list-item"
                 >
                   <div className="section-list-item-mini-details">
-                    <i className="fas fa-book"></i>
+                    <i className="fa-solid fa-folder"></i>
                   </div>
                   <div className="section-list-item-main-details">
-                    <h3 className="section-list-item-title">
-                      {subject.code}: <span>{subject.title}</span>
-                    </h3>
-                    <p className="section-list-item-description"></p>
+                    <h3 className="section-list-item-title">{subject.code}</h3>
+                    <p className="section-list-item-description">
+                      {subject.title}
+                    </p>
                   </div>
                   <div className="section-list-item-btn">
                     <Link

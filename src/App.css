@@ -59,10 +59,6 @@
   font-size: 18px;
 }
 
-.section-list-item-title span {
-  display: none;
-}
-
 .section-list-item-description {
   font-size: 14px;
   color: var(--faded);
@@ -130,6 +126,9 @@
     align-items: start;
   }
   .section-list-item-btn {
+    display: none;
+  }
+  .section-list-item-title span {
     display: none;
   }
 }

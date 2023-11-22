@@ -2,15 +2,15 @@ import { useParams, Link } from "react-router-dom";
 import data from "../Data";
 
 const fileNames = [
-  "assignments",
-  "ppts",
+  // "assignments",
+  // "ppts",
   "mcqs",
-  "ca",
+  // "ca",
   "midterm",
   "endterm",
   "notes",
   "syllabus",
-  "moocs",
+  // "moocs",
 ];
 
 const ResourcesDetails = () => {
@@ -59,7 +59,9 @@ const ResourcesDetails = () => {
         <i className="fas fa-chevron-right breadcrumbs-item"></i>
         <span className="breadcrumbs-item selected">{subjectCode}</span>
       </div>
-      <h2 className="section-title">{selectedSubject.code}</h2>
+      <h2 className="section-title">
+        {selectedSubject.code}: {selectedSubject.title}
+      </h2>
       <div className="section-content">
         <div className="section-menu">
           {fileNames.sort().map((file, index) => (
@@ -69,7 +71,7 @@ const ResourcesDetails = () => {
               className="section-list-item"
             >
               <div className="section-list-item-mini-details">
-                <i className="fas fa-book"></i>
+                <i className="fa-solid fa-folder"></i>
               </div>
               <div className="section-list-item-main-details">
                 <h3

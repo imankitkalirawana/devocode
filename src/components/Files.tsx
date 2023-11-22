@@ -158,7 +158,7 @@ const Files: React.FC = () => {
                 .map((file, index) => (
                   <a
                     href={`/resources/${selectedSubject.folder}/${file.name}`}
-                    download
+                    target="_blank"
                     key={index}
                     className="section-list-item"
                   >
