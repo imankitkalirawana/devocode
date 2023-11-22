@@ -69,7 +69,7 @@ const ResourcesHome = ({ subjects }: Props) => {
                   </div>
                   <div className="section-list-item-main-details">
                     <h3 className="section-list-item-title">
-                      {subject.code}: {subject.title}
+                      {subject.code}: <span>{subject.title}</span>
                     </h3>
                     <p className="section-list-item-description"></p>
                   </div>
