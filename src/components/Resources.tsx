@@ -12,15 +12,15 @@ type Props = {
     image: string;
     folder: string;
     syllabus: string;
-    reference: Array<string>;
-    moocs: Array<string>;
-    notes: Array<any>;
-    assignments: Array<any>;
-    ppts: Array<any>;
-    mcqs: Array<any>;
-    ca: Array<any>;
-    midterm: Array<any>;
-    endterm: Array<any>;
+    reference?: Array<string>;
+    moocs?: Array<string>;
+    notes?: Array<any>;
+    assignments?: Array<any>;
+    ppts?: Array<any>;
+    mcqs?: Array<any>;
+    ca?: Array<any>;
+    midterm?: Array<any>;
+    endterm?: Array<any>;
   }>;
 };
 
