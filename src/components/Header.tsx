@@ -21,14 +21,19 @@ const Header = () => {
               </Link>
             </li>
             <li className="list-items-item">
-              <a className="list-items-link" href="#about">
-                Product
+              <a
+                className="list-items-link"
+                href="https://divinelydeveloper.me#contact"
+              >
+                Contact
               </a>
-              <i className="fa-regular fa-angle-down"></i>
             </li>
             <li className="list-items-item">
-              <a className="list-items-link" href="#portfolio">
-                Pricing
+              <a
+                className="list-items-link"
+                href="https://divinelydeveloper.me"
+              >
+                About
               </a>
             </li>
             <li className="list-items-item">
@@ -53,8 +58,18 @@ const Header = () => {
         </nav>
         {/* login register buttons */}
         <div className="btns login-register">
-          <button className="btn login-btn">Login</button>
-          <button className="btn btn-primary register-btn">Register</button>
+          <a
+            href="https://github.com/imankitkalirawana"
+            className="btn login-btn"
+          >
+            Github
+          </a>
+          <a
+            href="https://divinelydeveloper.me"
+            className="btn btn-primary register-btn"
+          >
+            Portfolio
+          </a>
         </div>
         {/* Toggler */}
         <div className="toggler">

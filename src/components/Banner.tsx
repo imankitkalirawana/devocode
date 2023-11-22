@@ -7,14 +7,14 @@ const Banner = () => {
       <div className="banner">
         <h1 className="banner-title">Learn with ease...</h1>
         <p className="banner-text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Get access to your study material in one go.
         </p>
         <div className="btns">
           <Link to="/resources" className="btn btn-primary">
             Explore!
           </Link>
-          <a href="#" className="btn">
-            Get Started
+          <a href="https://github.com/imankitkalirawana" className="btn">
+            Developer
           </a>
         </div>
       </div>
