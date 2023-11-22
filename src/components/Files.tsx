@@ -41,12 +41,19 @@ const Files: React.FC = () => {
       <div className="section resources">
         {/* breadcrumbs */}
         <div className="breadcrumbs">
-          <Link to="/">Home</Link> /{" "}
-          <Link to={`/subjects/${selectedSubject.code}`}>
-            {selectedSubject.title}
-          </Link>{" "}
-          / {fileName}
-          <div className="clear"></div>
+          <Link className="breadcrumbs-item" to="/">
+            Home
+          </Link>
+          <i className="fas fa-chevron-right breadcrumbs-item"></i>
+          <Link className="breadcrumbs-item" to="/resources">
+            Subjects
+          </Link>
+          <i className="fas fa-chevron-right breadcrumbs-item"></i>
+          <Link to={`/resources/${subjectCode}`} className="breadcrumbs-item">
+            {subjectCode}
+          </Link>
+          <i className="fas fa-chevron-right breadcrumbs-item"></i>
+          <span className="breadcrumbs-item selected">{fileName}</span>
         </div>
 
         <div className="breadcrumbs">{/* ... (unchanged) */}</div>
