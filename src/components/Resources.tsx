@@ -11,9 +11,9 @@ type Props = {
     url: string;
     image: string;
     folder: string;
-    syllabus: string;
-    reference?: Array<string>;
-    moocs?: Array<string>;
+    syllabus?: string | Array<any>;
+    reference?: Array<any>;
+    moocs?: Array<any>;
     notes?: Array<any>;
     assignments?: Array<any>;
     ppts?: Array<any>;
