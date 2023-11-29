@@ -4,13 +4,6 @@ import { Link, useParams } from "react-router-dom";
 import Popup from "reactjs-popup";
 import API_BASE_URL from "../config";
 
-interface Subject {
-  code: string;
-  name: string;
-  description: string;
-  _id: string;
-}
-
 interface Resource {
   _id: string;
   title: string;
