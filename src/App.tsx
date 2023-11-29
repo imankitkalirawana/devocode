@@ -2,12 +2,17 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import Banner from "./components/Banner";
-import data from "./Data";
+import AddData from "./components/AddData";
 import Resources from "./components/Resources";
 import ResourcesDetails from "./components/ResourcesDetails";
 import Files from "./components/Files";
 import WarningPopup from "./components/WarningPopup";
 import Request from "./components/Request";
+import UpdateData from "./components/UpdateData";
+import UpdateResources from "./components/UpdateResources";
+import UpdateResourceDetails from "./components/UpdateResourceDetails";
+import UpdateFile from "./components/UpdateFile";
+import UpdateSubject from "./components/UpdateSubject";
 
 function App() {
   return (
@@ -25,15 +30,30 @@ function App() {
               </>
             }
           />
+          <Route path="/resources/add" element={<AddData />} />
+          <Route path="/resources/update" element={<UpdateData />} />
           <Route
-            path="/resources"
-            element={<Resources subjects={data.subjects} />}
+            path="/resources/update/subject/:subjectId"
+            element={<UpdateSubject />}
           />
           <Route
-            path="/resources/:subjectCode"
-            element={<ResourcesDetails />}
+            path="/resources/update/:subjectId"
+            element={<UpdateResources />}
           />
-          <Route path="/resources/:subjectCode/:fileName" element={<Files />} />
+          <Route
+            path="/resources/update/:resourceType/:subjectId"
+            element={<UpdateResourceDetails />}
+          />
+          <Route
+            path="/resources/update/:resourceType/update/:resourceId"
+            element={<UpdateFile />}
+          />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/resources/:subjectId" element={<ResourcesDetails />} />
+          <Route
+            path="/resources/:resourceType/:subjectId"
+            element={<Files />}
+          />
         </Routes>
       </Router>
     </>

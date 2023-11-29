@@ -29,20 +29,14 @@ const Header = () => {
               </Link>
             </li>
             <li className="list-items-item">
-              <a
-                className="list-items-link"
-                href="https://divinelydeveloper.me#contact"
-              >
-                Contact
-              </a>
+              <Link to="/resources/add" className="list-items-link">
+                Add
+              </Link>
             </li>
             <li className="list-items-item">
-              <a
-                className="list-items-link"
-                href="https://divinelydeveloper.me"
-              >
-                About
-              </a>
+              <Link className="list-items-link" to="/resources/update">
+                Update
+              </Link>
             </li>
             <li className="list-items-item">
               <Link to="/resources" className="list-items-link">

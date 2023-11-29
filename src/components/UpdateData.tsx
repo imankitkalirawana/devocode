@@ -1,17 +1,16 @@
-import { Link } from "react-router-dom";
-import "../css/Resources.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import API_BASE_URL from "../config";
 
 interface Subject {
-  code: string;
-  title: string;
-  description: string;
   _id: string;
+  title: string;
+  code: string;
+  description: string;
 }
 
-const Resources = () => {
+const UpdateData = () => {
   const [subjects, setSubjects] = useState<Subject[]>([]);
   // get subjects from api
   useEffect(() => {
@@ -34,14 +33,14 @@ const Resources = () => {
             Home
           </Link>
           <i className="fas fa-chevron-right breadcrumbs-item"></i>
-          <span className="breadcrumbs-item selected">Subjects</span>
+          <span className="breadcrumbs-item selected">Update</span>
         </div>
         <h2 className="section-title">Title</h2>
         <div className="section-content">
           <div className="section-menu">
             {subjects.map((subject, index) => (
               <Link
-                to={`/resources/${subject._id}`}
+                to={`/resources/update/${subject._id}`}
                 key={index}
                 className="section-list-item"
               >
@@ -50,12 +49,15 @@ const Resources = () => {
                 </div>
                 <div className="section-list-item-main-details">
                   <h3 className="section-list-item-title">{subject.code}</h3>
-                  <p className="section-list-item-description">
-                    {subject.title}
-                  </p>
+                  <p className="section-list-item-description"></p>
                 </div>
                 <div className="section-list-item-btn">
-                  <button className="btn btn-primary">View</button>
+                  <Link
+                    className="btn btn-primary"
+                    to={`/resources/update/subject/${subject._id}`}
+                  >
+                    Update
+                  </Link>
                 </div>
               </Link>
             ))}
@@ -64,6 +66,8 @@ const Resources = () => {
       </div>
     </div>
   );
+
+  return <div></div>;
 };
 
-export default Resources;
+export default UpdateData;

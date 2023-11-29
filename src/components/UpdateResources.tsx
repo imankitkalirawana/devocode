@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import API_BASE_URL from "../config";
 
 const resourceType = [
@@ -22,7 +22,7 @@ interface Subject {
   _id: string;
 }
 
-const ResourcesDetails = () => {
+const UpdateResources = () => {
   const { subjectId } = useParams();
   const [subject, setSubject] = useState<Subject>({} as Subject);
   // get selected subject from api
@@ -45,8 +45,8 @@ const ResourcesDetails = () => {
           Home
         </Link>
         <i className="fas fa-chevron-right breadcrumbs-item"></i>
-        <Link className="breadcrumbs-item" to="/resources">
-          Subjects
+        <Link className="breadcrumbs-item" to="/resources/update">
+          Update
         </Link>
         <i className="fas fa-chevron-right breadcrumbs-item"></i>
         <span className="breadcrumbs-item selected">{subject.code}</span>
@@ -56,7 +56,7 @@ const ResourcesDetails = () => {
         <div className="section-menu">
           {resourceType.sort().map((resource, index) => (
             <Link
-              to={`/resources/${resource}/${subject._id}`}
+              to={`/resources/update/${resource}/${subject._id}`}
               key={index}
               className="section-list-item"
             >
@@ -85,4 +85,4 @@ const ResourcesDetails = () => {
   );
 };
 
-export default ResourcesDetails;
+export default UpdateResources;
