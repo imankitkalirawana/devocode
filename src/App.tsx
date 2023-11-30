@@ -15,7 +15,7 @@ import UpdateResourceDetails from "./components/UpdateResourceDetails";
 import UpdateFile from "./components/UpdateFile";
 import UpdateSubject from "./components/UpdateSubject";
 import Login from "./components/Login";
-import Register from "./components/Register";
+
 import Home from "./components/Home";
 
 import "./App.css";
@@ -39,7 +39,6 @@ function App() {
           {/* login route*/}
           <Route path="/login" element={<Login />} />
           {/* register route*/}
-          <Route path="/register" element={<Register />} />
 
           <Route
             path="/resources/add"

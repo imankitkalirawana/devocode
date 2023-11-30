@@ -110,7 +110,12 @@ const UpdateResourceDetails = () => {
     axios
       .post(
         `${API_BASE_URL}/api/resources/${resourceType}/${subjectId}`,
-        newData
+        newData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       )
       .then((res) => {
         setStatus("success");

@@ -44,7 +44,11 @@ const UpdateSubject = () => {
   //   delete subject data
   const handleDelete = () => {
     axios
-      .delete(`${API_BASE_URL}/api/subjects/${subjectId}`)
+      .delete(`${API_BASE_URL}/api/subjects/${subjectId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
         console.log(res.data);
       })

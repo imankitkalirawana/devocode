@@ -1,14 +1,71 @@
 import "../css/Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import data from "../Data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import API_BASE_URL from "../config";
+
+interface User {
+  _id: string;
+  name: string;
+  email: string;
+  role: string;
+}
 
 const Header = () => {
   // sidebar functionality
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
+  const navigate = useNavigate();
+
+  const decodeToken = (token: any) => {
+    try {
+      const decoded = JSON.parse(atob(token.split(".")[1]));
+      return decoded;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+
+    if (token) {
+      const decodedToken = decodeToken(token);
+
+      if (decodedToken) {
+        // Fetch user details from the server using the token
+        axios
+          .get(`${API_BASE_URL}/api/user/${userId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((response) => {
+            const userDetails = response.data;
+            setLoggedInUser(userDetails);
+          })
+          .catch((error) => {
+            console.error("Error fetching user details:", error);
+            // Handle error, e.g., redirect to login page
+            setLoggedInUser(null);
+          });
+      }
+    } else {
+      setLoggedInUser(null);
+    }
+  }, []);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setLoggedInUser(null);
+    navigate("/login");
   };
 
   return (
@@ -58,14 +115,21 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-        {/* login register buttons */}
-        <div className="btns login-register">
-          <Link to="/login" className="btn login-btn">
-            Login
-          </Link>
-          <Link to={"/register"} className="btn btn-primary register-btn">
-            Register
-          </Link>
+        {/* login logout buttons */}
+        <div className="auth">
+          {loggedInUser ? (
+            <>
+              <button className="btn btn-primary" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="btn btn-primary">
+                Login
+              </Link>
+            </>
+          )}
         </div>
         {/* Toggler */}
         <div className="toggler" onClick={toggleSidebar}>

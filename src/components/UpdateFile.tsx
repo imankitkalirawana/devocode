@@ -48,7 +48,11 @@ const UpdateFile = () => {
 
   const handleSubmit = () => {
     axios
-      .put(`${API_BASE_URL}/api/${resourceType}/${resourceId}`, resource)
+      .put(`${API_BASE_URL}/api/${resourceType}/${resourceId}`, resource, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
         console.log(res.data);
         setIsSuccess(true);
@@ -63,7 +67,11 @@ const UpdateFile = () => {
 
   const handleDelete = () => {
     axios
-      .delete(`${API_BASE_URL}/api/${resourceType}/${resourceId}`)
+      .delete(`${API_BASE_URL}/api/${resourceType}/${resourceId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
         console.log(res.data);
         window.location.href = `/resources/update/${resourceType}/${resource.subject}`;

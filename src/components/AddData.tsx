@@ -77,7 +77,11 @@ const Files: React.FC = () => {
     }
 
     axios
-      .post(`${API_BASE_URL}/api/subjects`, newSubjectData)
+      .post(`${API_BASE_URL}/api/subjects`, newSubjectData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
         setStatus("success");
         setMessage("Added");
