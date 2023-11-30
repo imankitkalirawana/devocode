@@ -153,7 +153,11 @@ const UpdateResourceDetails = () => {
     formData.append("file", file);
 
     axios
-      .post(`${API_BASE_URL}/api/upload`, formData)
+      .post(`${API_BASE_URL}/api/upload`, formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
         console.log(res);
       })
