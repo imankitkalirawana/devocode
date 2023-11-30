@@ -22,6 +22,7 @@ const Files: React.FC = () => {
   const [subject, setSubject] = useState<Subject | null>(null);
   const [files, setFiles] = useState<File[]>([]);
   const [error, setError] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     // Fetch subject data
@@ -48,6 +49,15 @@ const Files: React.FC = () => {
       });
   }, [subjectId, resourceType]);
 
+  // check window size
+  useEffect(() => {
+    if (window.innerWidth <= 640) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  }, []);
+
   return (
     <>
       {subject && (
@@ -72,9 +82,18 @@ const Files: React.FC = () => {
           {!error ? (
             files.map((file, index) => (
               <div className="section-list-item" key={index}>
-                <div className="section-list-item-mini-details">
-                  <i className="fa-solid fa-file"></i>
-                </div>
+                <a
+                  href={`${API_BASE_URL}/uploads/${file.file}`}
+                  className={`section-list-item-mini-details ${
+                    isMobile ? "section-mobile" : ""
+                  }`}
+                >
+                  <i
+                    className={`fa-solid ${
+                      !isMobile ? "fa-file" : "fa-arrow-down-to-line"
+                    }`}
+                  ></i>
+                </a>
                 <div className="section-list-item-main-details">
                   <h3 className="section-list-item-title">{file.title}</h3>
                   <p className="section-list-item-description">
