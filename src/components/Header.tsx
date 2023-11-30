@@ -60,18 +60,12 @@ const Header = () => {
         </nav>
         {/* login register buttons */}
         <div className="btns login-register">
-          <a
-            href="https://github.com/imankitkalirawana"
-            className="btn login-btn"
-          >
-            Github
-          </a>
-          <a
-            href="https://divinelydeveloper.me"
-            className="btn btn-primary register-btn"
-          >
-            Portfolio
-          </a>
+          <Link to="/login" className="btn login-btn">
+            Login
+          </Link>
+          <Link to={"/register"} className="btn btn-primary register-btn">
+            Register
+          </Link>
         </div>
         {/* Toggler */}
         <div className="toggler" onClick={toggleSidebar}>
