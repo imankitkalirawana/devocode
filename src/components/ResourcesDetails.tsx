@@ -14,7 +14,8 @@ const resourceType = [
   "endterm",
   "notes",
   "syllabus",
-  // "moocs",
+  "reference",
+  "moocs",
 ];
 
 interface Subject {
