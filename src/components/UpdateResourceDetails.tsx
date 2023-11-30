@@ -89,7 +89,6 @@ const UpdateResourceDetails = () => {
         type: file.type,
       }
     );
-    console.log(file.name);
 
     setFile(file);
     setNewData((prevData) => ({
@@ -119,11 +118,11 @@ const UpdateResourceDetails = () => {
         }
       )
       .then((res) => {
+        uploadFile();
         setStatus("success");
         setMessage("Added");
         resetPopup();
         setFiles([...files, res.data]);
-        uploadFile();
         setNewData({
           title: "",
           description: "",
@@ -161,9 +160,11 @@ const UpdateResourceDetails = () => {
       })
       .then((res) => {
         console.log(res);
+        console.log("File uploaded successfully");
       })
       .catch((err) => {
         console.log(err);
+        console.log("Error uploading file");
       });
   };
 
