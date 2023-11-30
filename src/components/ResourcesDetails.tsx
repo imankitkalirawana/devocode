@@ -19,7 +19,7 @@ const resourceType = [
 
 interface Subject {
   code: string;
-  name: string;
+  title: string;
   description: string;
   _id: string;
 }
@@ -67,7 +67,9 @@ const ResourcesDetails = () => {
             <i className="fas fa-chevron-right breadcrumbs-item"></i>
             <span className="breadcrumbs-item selected">{subject.code}</span>
           </div>
-          <h2 className="section-title">CSE101: Introduction to Programming</h2>
+          <h2 className="section-title">
+            {subject.code}: {subject.title}
+          </h2>
           <div className="form-input">
             <label htmlFor="search">Search</label>
             <input
