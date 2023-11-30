@@ -1,11 +1,11 @@
 import Banner from "./Banner";
-import Request from "./Request";
+// import Request from "./Request";
 import WarningPopup from "./WarningPopup";
 
 const Home = () => (
   <>
     <Banner />
-    <Request />
+    {/* <Request /> */}
     <WarningPopup />
   </>
 );
