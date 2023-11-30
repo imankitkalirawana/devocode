@@ -176,6 +176,51 @@ const Header = () => {
               Home
             </Link>
           </li>
+
+          <li className="sidebar-list-item">
+            <Link to="/resources" className="sidebar-list-link">
+              <i className="fa-regular fa-layer-group"></i>
+              Resources
+            </Link>
+          </li>
+
+          {loggedInUser ? (
+            <>
+              <li className="sidebar-list-item">
+                <Link to="/resources/add" className="sidebar-list-link">
+                  <i className="fa-regular fa-add"></i>
+                  Add
+                </Link>
+              </li>
+              <li className="sidebar-list-item">
+                <Link className="sidebar-list-link" to="/resources/update">
+                  <i className="fa-regular fa-file-arrow-up"></i>
+                  Update
+                </Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="sidebar-list-item">
+                <a
+                  className="sidebar-list-link"
+                  href="https://divinelydeveloper.me"
+                >
+                  <i className="fa-regular fa-user"></i>
+                  About
+                </a>
+              </li>
+              <li className="sidebar-list-item">
+                <a
+                  className="sidebar-list-link"
+                  href="https://github.com/imankitkalirawana"
+                >
+                  <i className="fa-brands fa-github"></i>
+                  Github
+                </a>
+              </li>
+            </>
+          )}
           <li className="sidebar-list-item">
             <a
               className="sidebar-list-link"
@@ -185,30 +230,7 @@ const Header = () => {
               Contact
             </a>
           </li>
-          <li className="sidebar-list-item">
-            <a
-              className="sidebar-list-link"
-              href="https://divinelydeveloper.me"
-            >
-              <i className="fa-regular fa-user"></i>
-              About
-            </a>
-          </li>
-          <li className="sidebar-list-item">
-            <Link to="/resources" className="sidebar-list-link">
-              <i className="fa-regular fa-book"></i>
-              Resources
-            </Link>
-          </li>
-          <li className="sidebar-list-item">
-            <a
-              className="sidebar-list-link"
-              href="https://github.com/imankitkalirawana"
-            >
-              <i className="fa-brands fa-github"></i>
-              Github
-            </a>
-          </li>
+
           <li className="sidebar-list-item">
             <a
               className="sidebar-list-link"
