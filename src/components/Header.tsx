@@ -86,46 +86,59 @@ const Header = () => {
               </Link>
             </li>
             <li className="list-items-item">
-              <Link to="/resources/add" className="list-items-link">
-                Add
-              </Link>
-            </li>
-            <li className="list-items-item">
-              <Link className="list-items-link" to="/resources/update">
-                Update
-              </Link>
-            </li>
-            <li className="list-items-item">
               <Link to="/resources" className="list-items-link">
                 Resources
               </Link>
-              <i className="fa-regular fa-angle-down"></i>
-              <ul className="dropdown-list-items">
-                {data.subjects.slice(0, 8).map((subject, index) => (
-                  <li key={index} className="dropdown-list-items-item">
-                    <Link
-                      to={`/resources/${subject.code}`}
-                      className="dropdown-list-items-link"
-                    >
-                      {subject.code}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
             </li>
+            {loggedInUser ? (
+              <>
+                <li className="list-items-item">
+                  <Link to="/resources/add" className="list-items-link">
+                    Add
+                  </Link>
+                </li>
+                <li className="list-items-item">
+                  <Link className="list-items-link" to="/resources/update">
+                    Update
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="list-items-item">
+                  <a
+                    href="https://divinelydeveloper.me"
+                    className="list-items-link"
+                  >
+                    About
+                  </a>
+                </li>
+                <li className="list-items-item">
+                  <a
+                    href="https://github.com/imankitkalirawana"
+                    className="list-items-link"
+                  >
+                    Github
+                  </a>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
         {/* login logout buttons */}
         <div className="auth">
           {loggedInUser ? (
             <>
-              <button className="btn btn-primary" onClick={handleLogout}>
+              <button
+                className="btn btn-primary login-register"
+                onClick={handleLogout}
+              >
                 Logout
               </button>
             </>
           ) : (
             <>
-              <Link to="/login" className="btn btn-primary">
+              <Link to="/login" className="btn btn-primary login-register">
                 Login
               </Link>
             </>
@@ -207,6 +220,18 @@ const Header = () => {
             </a>
           </li>
         </ul>
+        {loggedInUser ? (
+          <button
+            className="btn btn-primary login-register"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        ) : (
+          <Link to="/login" className="btn btn-primary login-register">
+            Login
+          </Link>
+        )}
       </aside>
     </>
   );

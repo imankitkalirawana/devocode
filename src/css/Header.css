@@ -133,6 +133,11 @@
   background: var(--lighter);
 }
 
+.sidebar .btn{
+  align-self: center;
+    margin-top: 3rem;
+}
+
 @media (max-width: 820px) {
   .list-items {
     display: none;
