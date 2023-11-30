@@ -7,7 +7,7 @@ const resourceType = [
   // "assignments",
   // "ppts",
   "mcqs",
-  // "ca",
+  "ca",
   "midterm",
   "endterm",
   "notes",

@@ -119,7 +119,7 @@ const Files: React.FC = () => {
                       id="search"
                       className="input"
                       type="text"
-                      placeholder="MCQs, Notes, etc."
+                      placeholder={`Search ${resourceType}`}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />

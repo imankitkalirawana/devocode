@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import API_BASE_URL from "../config";
+// import BottomBar from "./BottomBar";
 
 interface User {
   _id: string;
@@ -233,6 +234,8 @@ const Header = () => {
           </Link>
         )}
       </aside>
+      {/* bottom mobile bar */}
+      {/* <BottomBar /> */}
     </>
   );
 };
