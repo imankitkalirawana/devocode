@@ -17,7 +17,7 @@ const resourceType = [
 
 interface Subject {
   code: string;
-  name: string;
+  title: string;
   description: string;
   _id: string;
 }
@@ -25,6 +25,7 @@ interface Subject {
 const UpdateResources = () => {
   const { subjectId } = useParams();
   const [subject, setSubject] = useState<Subject>({} as Subject);
+  const [searchQuery, setSearchQuery] = useState("");
   // get selected subject from api
   useEffect(() => {
     axios
@@ -51,34 +52,53 @@ const UpdateResources = () => {
         <i className="fas fa-chevron-right breadcrumbs-item"></i>
         <span className="breadcrumbs-item selected">{subject.code}</span>
       </div>
-      <h2 className="section-title">CSE101: Introduction to Programming</h2>
+      <h2 className="section-title">
+        {subject.code} : {subject.title}
+      </h2>
+      {/* search */}
+      <div className="form-input">
+        <label htmlFor="search">Search</label>
+        <input
+          id="search"
+          className="input"
+          type="text"
+          placeholder="Search"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
       <div className="section-content">
         <div className="section-menu">
-          {resourceType.sort().map((resource, index) => (
-            <Link
-              to={`/resources/update/${resource}/${subject._id}`}
-              key={index}
-              className="section-list-item"
-            >
-              <div className="section-list-item-mini-details">
-                <i className="fa-solid fa-folder"></i>
-              </div>
-              <div className="section-list-item-main-details">
-                <h3
-                  className="section-list-item-title"
-                  style={
-                    resource.length <= 4 ? { textTransform: "uppercase" } : {}
-                  }
-                >
-                  {resource}
-                </h3>
-                <p className="section-list-item-description"></p>
-              </div>
-              <div className="section-list-item-btn">
-                <button className="btn btn-primary">View</button>
-              </div>
-            </Link>
-          ))}
+          {resourceType
+            .filter((resource) =>
+              resource.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            .sort()
+            .map((resource, index) => (
+              <Link
+                to={`/resources/update/${resource}/${subject._id}`}
+                key={index}
+                className="section-list-item"
+              >
+                <div className="section-list-item-mini-details">
+                  <i className="fa-solid fa-folder"></i>
+                </div>
+                <div className="section-list-item-main-details">
+                  <h3
+                    className="section-list-item-title"
+                    style={
+                      resource.length <= 4 ? { textTransform: "uppercase" } : {}
+                    }
+                  >
+                    {resource}
+                  </h3>
+                  <p className="section-list-item-description"></p>
+                </div>
+                <div className="section-list-item-btn">
+                  <button className="btn btn-primary">View</button>
+                </div>
+              </Link>
+            ))}
         </div>
       </div>
     </div>

@@ -27,6 +27,7 @@ const Files: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [loading, setLoading] = useState(true);
   const [serverError, setServerError] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     // Fetch subject data
@@ -65,6 +66,15 @@ const Files: React.FC = () => {
     }
   }, []);
 
+  // sort files
+  files.sort((a, b) => {
+    if (a.title.toLowerCase() < b.title.toLowerCase()) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+
   return (
     <>
       {subject && (
@@ -100,38 +110,61 @@ const Files: React.FC = () => {
               </div>
 
               {!error ? (
-                files.map((file, index) => (
-                  <div className="section-list-item" key={index}>
-                    <a
-                      href={`${API_BASE_URL}/uploads/${file.file}`}
-                      className={`section-list-item-mini-details ${
-                        isMobile ? "section-mobile" : ""
-                      }`}
-                    >
-                      <i
-                        className={`fa-solid ${
-                          !isMobile ? "fa-file" : "fa-arrow-down-to-line"
-                        }`}
-                      ></i>
-                    </a>
-                    <div className="section-list-item-main-details">
-                      <h3 className="section-list-item-title">{file.title}</h3>
-                      <p className="section-list-item-description">
-                        {file.description}
-                      </p>
-                    </div>
-                    <div className="section-list-item-btn">
-                      <a
-                        href={`${API_BASE_URL}/uploads/${file.file}`}
-                        className="btn btn-primary"
-                        target="__blank"
-                        download
-                      >
-                        Download
-                      </a>
-                    </div>
+                <>
+                  <h2 className="section-title">{resourceType}</h2>
+
+                  <div className="form-input">
+                    <label htmlFor="search">Search</label>
+                    <input
+                      id="search"
+                      className="input"
+                      type="text"
+                      placeholder="MCQs, Notes, etc."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
                   </div>
-                ))
+                  {files
+                    .filter((file) =>
+                      file.title
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase())
+                    )
+                    .map((file, index) => (
+                      <div className="section-list-item" key={index}>
+                        <a
+                          href={`${API_BASE_URL}/uploads/${file.file}`}
+                          className={`section-list-item-mini-details ${
+                            isMobile ? "section-mobile" : ""
+                          }`}
+                        >
+                          <i
+                            className={`fa-solid ${
+                              !isMobile ? "fa-file" : "fa-arrow-down-to-line"
+                            }`}
+                          ></i>
+                        </a>
+                        <div className="section-list-item-main-details">
+                          <h3 className="section-list-item-title">
+                            {file.title}
+                          </h3>
+                          <p className="section-list-item-description">
+                            {file.description}
+                          </p>
+                        </div>
+                        <div className="section-list-item-btn">
+                          <a
+                            href={`${API_BASE_URL}/uploads/${file.file}`}
+                            className="btn btn-primary"
+                            target="__blank"
+                            download
+                          >
+                            Download
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                </>
               ) : (
                 <div className="section-error">
                   <img src="/error404.png" alt="" />

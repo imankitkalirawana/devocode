@@ -66,6 +66,7 @@ const Header = () => {
     setLoggedInUser(null);
     navigate("/login");
   };
+  console.log(loggedInUser);
 
   return (
     <>

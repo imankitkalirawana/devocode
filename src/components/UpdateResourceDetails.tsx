@@ -27,6 +27,7 @@ const UpdateResourceDetails = () => {
   const [message, setMessage] = useState("");
   const [title, setTitle] = useState("");
   const [file, setFile] = useState<any>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const [newData, setNewData] = useState({
     title: "",
@@ -166,6 +167,15 @@ const UpdateResourceDetails = () => {
       });
   };
 
+  // sort files
+  files.sort((a, b) => {
+    if (a.title.toLowerCase() < b.title.toLowerCase()) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+
   return (
     <>
       {subject && (
@@ -252,29 +262,48 @@ const UpdateResourceDetails = () => {
             </form>
           </div>
 
-          {!error
-            ? files.map((file, index) => (
-                <div className="section-list-item" key={index}>
-                  <div className="section-list-item-mini-details">
-                    <i className="fa-solid fa-file"></i>
+          {!error ? (
+            <>
+              <h2 className="section-title">Files</h2>
+              {/* search */}
+              <div className="form-input">
+                <label htmlFor="search">Search</label>
+                <input
+                  id="search"
+                  className="input"
+                  type="text"
+                  placeholder="Unit etc."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+              {files
+                .filter((file) =>
+                  file.title.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+                .map((file, index) => (
+                  <div className="section-list-item" key={index}>
+                    <div className="section-list-item-mini-details">
+                      <i className="fa-solid fa-file"></i>
+                    </div>
+                    <div className="section-list-item-main-details">
+                      <h3 className="section-list-item-title">{file.title}</h3>
+                      <p className="section-list-item-description">
+                        {file.description}
+                      </p>
+                    </div>
+                    <div className="section-list-item-btn">
+                      <Link
+                        className="btn btn-primary"
+                        to={`/resources/update/${resourceType}/update/${file._id}`}
+                      >
+                        Edit
+                      </Link>
+                    </div>
                   </div>
-                  <div className="section-list-item-main-details">
-                    <h3 className="section-list-item-title">{file.title}</h3>
-                    <p className="section-list-item-description">
-                      {file.description}
-                    </p>
-                  </div>
-                  <div className="section-list-item-btn">
-                    <Link
-                      className="btn btn-primary"
-                      to={`/resources/update/${resourceType}/update/${file._id}`}
-                    >
-                      Edit
-                    </Link>
-                  </div>
-                </div>
-              ))
-            : null}
+                ))}
+            </>
+          ) : null}
         </div>
       )}
     </>
