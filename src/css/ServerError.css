@@ -1,0 +1,919 @@
+.error-contain {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid blue;
+}
+.section-error .error-info {
+  width: 50%;
+  float: left;
+}
+.section-error .error-image {
+  display: block;
+  width: 50%;
+  float: right;
+  position: relative;
+}
+
+.section-error .icon {
+  position: relative;
+  margin: 0 auto;
+
+  /* 	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%); */
+  width: 600px;
+  height: 600px;
+}
+.section-error .bg {
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  transform: scale(2);
+  filter: drop-shadow(2px 4px 0px #f0f5ff);
+}
+
+.section-error .boy {
+  height: 300px;
+  width: 300px;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(5px 3px 0px rgba(0, 0, 0, 0.1));
+}
+.section-error .boy-head {
+  position: absolute;
+  left: 25px;
+  top: 40px;
+}
+.section-error .boy-shirt {
+  width: 215px;
+  position: absolute;
+  height: 150px;
+  bottom: 3px;
+  background: #b8d3ff;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 50px 50px 0 0;
+}
+.section-error .boy-badge {
+  width: 35px;
+  height: 50px;
+  border-radius: 5px;
+  background: #16304f;
+  position: absolute;
+  top: 85px;
+  left: 65px;
+  filter: drop-shadow(3px 2px 0px #a0bff2);
+}
+.section-error .boy-badge::before {
+  content: "";
+  width: 10px;
+  height: 15px;
+  background: #aaa;
+  position: absolute;
+  border-radius: 3px;
+  left: 50%;
+  top: -8px;
+  transform: translate(-50%, 0);
+}
+.section-error .image {
+  width: 100%;
+  height: 20px;
+  background: white;
+  position: absolute;
+  top: 10px;
+}
+.section-error .image i {
+  margin-left: 5px;
+  margin-top: 3px;
+}
+
+.section-error .boy-face {
+  transform: scale3d(3.5, 3.5, 3.5);
+  position: absolute;
+  top: 130px;
+  left: 135px;
+  filter: drop-shadow(0px 2px 0px #a0bff2);
+}
+.section-error .boy-hair {
+  z-index: 5;
+  transform: scale3d(3.8, 3.8, 3.8);
+  position: absolute;
+  top: 140px;
+  left: 143px;
+  filter: drop-shadow(0px 1px 0px rgba(0, 0, 0, 0.2));
+}
+.section-error .boy-hair-lick-1,
+.section-error .boy-hair-lick-2 {
+  position: absolute;
+}
+.section-error .boy-hair-lick-1 {
+  transform: scale3d(1.5, 1.5, 1.5) rotate(15deg);
+  left: 130px;
+  top: -30px;
+}
+.section-error .boy-hair-lick-2 {
+  transform: rotate(-20deg);
+  left: 122px;
+  top: -47px;
+}
+
+.section-error .boy-mouth {
+  height: 3px;
+  width: 20px;
+  background: #222;
+  position: absolute;
+  left: 115px;
+  top: 130px;
+  border-radius: 3px;
+}
+
+.section-error .boy-eyes {
+  height: 15px;
+  width: 100px;
+  position: absolute;
+  z-index: 6;
+  left: 75px;
+  top: 85px;
+}
+.section-error .left-eye,
+.section-error .right-eye {
+  width: 15px;
+  height: 15px;
+  background: #000;
+  position: absolute;
+  border-radius: 50%;
+  animation-name: blink;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.section-error .left-eye {
+  left: 0;
+}
+.section-error .right-eye {
+  right: 0;
+}
+@keyframes blink {
+  18% {
+    height: 15px;
+    top: 0;
+  }
+  20% {
+    height: 3px;
+    top: 5px;
+  }
+  22% {
+    top: 0;
+    height: 15px;
+  }
+}
+
+.section-error .boy-brows {
+  height: 15px;
+  width: 100px;
+  position: absolute;
+  z-index: 2;
+  left: 75px;
+  top: 65px;
+}
+.section-error .left-brow,
+.section-error .right-brow {
+  width: 30px;
+  height: 10px;
+  background: #111;
+  position: absolute;
+  top: 5px;
+  border-radius: 3px;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.section-error .left-brow {
+  left: 0;
+  transform: rotate(0);
+  animation-name: left-brow;
+}
+.section-error .right-brow {
+  right: 0;
+  transform: rotate(0);
+  animation-name: right-brow;
+}
+
+@keyframes left-brow {
+  10% {
+    transform: rotate(0);
+  }
+  15% {
+    transform: rotate(-15deg);
+  }
+  60% {
+    transform: rotate(-15deg);
+  }
+  65% {
+    transform: rotate(0);
+  }
+}
+
+@keyframes right-brow {
+  10% {
+    transform: rotate(0);
+  }
+  15% {
+    transform: rotate(15deg);
+  }
+  60% {
+    transform: rotate(15deg);
+  }
+  65% {
+    transform: rotate(0);
+  }
+}
+
+.section-error .boy-ears {
+  width: 170px;
+  height: 30px;
+  position: absolute;
+  top: 85px;
+  left: 40px;
+}
+.section-error .left-ear,
+.section-error .right-ear {
+  height: 30px;
+  width: 20px;
+  background: #f2daa0;
+  position: absolute;
+}
+.section-error .left-ear {
+  left: 0;
+  border-radius: 50% 0 50% 50%;
+}
+.section-error .right-ear {
+  right: 2px;
+  border-radius: 0 50% 50% 50%;
+}
+
+.section-error .boy-stache {
+  position: absolute;
+  left: 88px;
+  top: 93px;
+  transform: scale(0.5);
+}
+
+.section-error .palm-left,
+.section-error .palm-right {
+  position: absolute;
+  bottom: 20px;
+  width: 70px;
+  height: 50px;
+  border-radius: 10px 10px 50% 50%;
+  background: #dbc07b;
+  z-index: 5;
+}
+.section-error .palm-left {
+  left: 176px;
+  bottom: 150px;
+}
+.section-error .palm-right {
+  right: 176px;
+  bottom: 150px;
+}
+.section-error ul {
+  padding: 0;
+  position: absolute;
+  bottom: 73px;
+  list-style-type: none;
+}
+.section-error .fingers-left {
+  bottom: 203px;
+  left: 176px;
+}
+.section-error .fingers-right {
+  bottom: 203px;
+  right: 176px;
+}
+.section-error li::before {
+  content: "";
+  position: absolute;
+  height: 2px;
+  background: #e8cd8b;
+  left: 3px;
+  right: 3px;
+  top: 0px;
+}
+.section-error li {
+  display: inline;
+  position: absolute;
+  width: 15px;
+  height: 35px;
+  background: #f2daa0;
+  border-radius: 15px;
+  border: 1px solid #f2daa0;
+  border-top: 2px solid #fff4d9;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  top: 10px;
+  overflow: hidden;
+  z-index: 5;
+}
+.section-error li::after {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  right: 2px;
+  left: 2px;
+  height: 8px;
+  background: #ffeab8;
+  border-radius: 0 0 50% 50%;
+  border-top: 1px solid #e8cd8b;
+}
+.section-error li:nth-child(5)::after,
+.section-error li:nth-child(5)::before {
+  display: none;
+}
+.section-error .fingers-left li:nth-child(1) {
+  width: 10px;
+  height: 30px;
+  top: 15px;
+  animation-name: l-fin-1;
+}
+.section-error .fingers-left li:nth-child(2) {
+  left: 14px;
+  animation-name: l-fin-2;
+}
+.section-error .fingers-left li:nth-child(3) {
+  left: 33px;
+  animation-name: l-fin-3;
+}
+.section-error .fingers-left li:nth-child(4) {
+  left: 52px;
+  animation-name: l-fin-4;
+}
+.section-error .fingers-left li:nth-child(5) {
+  left: 60px;
+  height: 15px;
+  width: 35px;
+  top: 35px;
+  animation-name: l-fin-5;
+  transform: rotate(-25deg);
+  z-index: 4;
+  background: #dbc07b;
+}
+
+.section-error .fingers-right li:nth-child(1) {
+  width: 10px;
+  height: 30px;
+  top: 15px;
+  right: 0;
+  animation-name: r-fin-1;
+}
+.section-error .fingers-right li:nth-child(2) {
+  right: 14px;
+  animation-name: r-fin-2;
+}
+.section-error .fingers-right li:nth-child(3) {
+  right: 33px;
+  animation-name: r-fin-3;
+}
+.section-error .fingers-right li:nth-child(4) {
+  right: 52px;
+  animation-name: r-fin-4;
+}
+.section-error .fingers-right li:nth-child(5) {
+  right: 60px;
+  height: 15px;
+  width: 35px;
+  top: 35px;
+  animation-name: r-fin-5;
+  transform: rotate(25deg);
+  z-index: 4;
+  background: #dbc07b;
+}
+
+.section-error .keyboard {
+  height: 30px;
+  width: 260px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 130px;
+  background: #222;
+  position: absolute;
+  border-radius: 5px;
+  border-bottom: 3px solid #111;
+  z-index: 6;
+}
+.section-error .keyboard .key {
+  position: absolute;
+  top: -5px;
+  height: 10px;
+  width: 15px;
+  background: #222;
+  border-radius: 3px;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  border-top: 2px solid #333;
+}
+.section-error .keyboard .key:first-child {
+  animation-name: key-1;
+  left: 3px;
+}
+.section-error .keyboard .key:nth-child(2) {
+  animation-name: key-2;
+  left: 21px;
+}
+.section-error .keyboard .key:nth-child(3) {
+  animation-name: key-3;
+  left: 40px;
+}
+.section-error .keyboard .key:nth-child(4) {
+  animation-name: key-4;
+  left: 59px;
+}
+.section-error .keyboard .key:nth-child(5) {
+  animation-name: key-5;
+  left: 80px;
+  width: 100px;
+}
+.section-error .keyboard .key:nth-child(6) {
+  right: 59px;
+  animation-name: key-6;
+}
+.section-error .keyboard .key:nth-child(7) {
+  animation-name: key-7;
+  right: 40px;
+}
+.section-error .keyboard .key:nth-child(8) {
+  animation-name: key-8;
+  right: 21px;
+}
+.section-error .keyboard .key:nth-child(9) {
+  animation-name: key-9;
+  right: 3px;
+}
+.section-error .keyboard .key:nth-child(10) {
+  animation-name: key-10;
+}
+.section-error .keyboard .key:nth-child(11) {
+  animation-name: key-11;
+}
+.section-error .keyboard .key:nth-child(12) {
+  animation-name: key-12;
+}
+.section-error .keyboard .key:nth-child(13) {
+  animation-name: key-13;
+}
+
+@keyframes r-fin-3 {
+  4% {
+    top: 10px;
+  }
+  5% {
+    top: 15px;
+  }
+  10% {
+    top: 10px;
+  }
+}
+@keyframes key-7 {
+  7% {
+    top: -5px;
+  }
+  8% {
+    top: -1px;
+  }
+  13% {
+    top: -5px;
+  }
+}
+
+@keyframes l-fin-2 {
+  9% {
+    top: 10px;
+  }
+  10% {
+    top: 15px;
+  }
+  15% {
+    top: 10px;
+  }
+}
+@keyframes key-2 {
+  12% {
+    top: -5px;
+  }
+  13% {
+    top: -1px;
+  }
+  17% {
+    top: -5px;
+  }
+}
+
+@keyframes r-fin-2 {
+  14% {
+    top: 10px;
+  }
+  15% {
+    top: 15px;
+  }
+  20% {
+    top: 10px;
+  }
+}
+@keyframes key-8 {
+  17% {
+    top: -5px;
+  }
+  18% {
+    top: -1px;
+  }
+  22% {
+    top: -5px;
+  }
+}
+
+@keyframes l-fin-3 {
+  19% {
+    top: 10px;
+  }
+  20% {
+    top: 15px;
+  }
+  25% {
+    top: 10px;
+  }
+}
+@keyframes key-3 {
+  22% {
+    top: -5px;
+  }
+  23% {
+    top: -1px;
+  }
+  27% {
+    top: -5px;
+  }
+}
+
+@keyframes r-fin-5 {
+  24% {
+    top: 35px;
+  }
+  25% {
+    top: 40px;
+  }
+  30% {
+    top: 35px;
+  }
+}
+@keyframes key-5 {
+  27% {
+    top: -5px;
+    transform: rotate(0);
+  }
+  28% {
+    top: -2px;
+    transform: rotate(3deg);
+  }
+  32% {
+    top: -5px;
+    transform: rotate(0);
+  }
+  42% {
+    top: -5px;
+    transform: rotate(0);
+  }
+  43% {
+    top: -2px;
+    transform: rotate(-3deg);
+  }
+  47% {
+    top: -5px;
+    transform: rotate(0);
+  }
+}
+
+@keyframes l-fin-4 {
+  29% {
+    top: 10px;
+  }
+  30% {
+    top: 15px;
+  }
+  35% {
+    top: 10px;
+  }
+}
+@keyframes key-4 {
+  32% {
+    top: -5px;
+  }
+  33% {
+    top: -1px;
+  }
+  37% {
+    top: -5px;
+  }
+}
+
+@keyframes r-fin-4 {
+  34% {
+    top: 10px;
+  }
+  35% {
+    top: 15px;
+  }
+  40% {
+    top: 10px;
+  }
+}
+@keyframes key-6 {
+  37% {
+    top: -5px;
+  }
+  38% {
+    top: -1px;
+  }
+  42% {
+    top: -5px;
+  }
+}
+
+@keyframes l-fin-5 {
+  39% {
+    top: 35px;
+  }
+  40% {
+    top: 40px;
+  }
+  45% {
+    top: 35px;
+  }
+}
+
+@keyframes r-fin-1 {
+  44% {
+    top: 15px;
+  }
+  45% {
+    top: 20px;
+  }
+  50% {
+    top: 15px;
+  }
+}
+@keyframes key-9 {
+  47% {
+    top: -5px;
+  }
+  48% {
+    top: -1px;
+  }
+  52% {
+    top: -5px;
+  }
+}
+
+@keyframes l-fin-1 {
+  49% {
+    top: 15px;
+  }
+  50% {
+    top: 20px;
+  }
+  55% {
+    top: 15px;
+  }
+}
+@keyframes key-1 {
+  52% {
+    top: -5px;
+  }
+  53% {
+    top: -1px;
+  }
+  57% {
+    top: -5px;
+  }
+}
+
+.section-error .tear {
+  transform: scale(0.5);
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  z-index: 5;
+  animation-name: tear-fall;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 0;
+}
+@keyframes tear-fall {
+  50% {
+    opacity: 0;
+    top: 60px;
+  }
+  60% {
+    opacity: 1;
+    top: 75px;
+  }
+  80% {
+    top: 100px;
+  }
+  85% {
+    top: 100px;
+  }
+  90% {
+    opacity: 0;
+  }
+}
+.section-error .server {
+  width: 100px;
+  height: 200px;
+  background: #222;
+  position: absolute;
+  right: 120px;
+  top: 50%;
+  transform: translate(0, -50%);
+  border-radius: 5px;
+}
+.section-error .server-disc {
+  position: absolute;
+  height: 20px;
+  background: #333;
+  top: 30px;
+  left: 5px;
+  right: 5px;
+  border-radius: 3px;
+  border-bottom: 2px solid #111;
+  border-top: 1px solid #444;
+}
+.section-error .server-disc::before {
+  width: 10px;
+  height: 10px;
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  border-radius: 50%;
+  background: #222;
+}
+.section-error .server-disc::after {
+  width: 20px;
+  height: 10px;
+  content: "";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border-radius: 3px;
+  background: #222;
+}
+.section-error .server-shock {
+  position: absolute;
+  top: -75px;
+  left: -20px;
+}
+
+.section-error .server-lights {
+  position: absolute;
+  height: 60px;
+  background: #333;
+  top: 70px;
+  left: 5px;
+  right: 5px;
+}
+.section-error .server-lights span {
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  background: #4aff71;
+  right: 5px;
+  border-radius: 50%;
+  opacity: 1;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.section-error .server-lights span:nth-child(1) {
+  background: #4aff71;
+  animation-name: blink-1;
+  animation-duration: 2s;
+  top: 5px;
+}
+.section-error .server-lights span:nth-child(2) {
+  background: #ff4a65;
+  animation-name: blink-2;
+  animation-duration: 3s;
+  top: 15px;
+}
+
+@keyframes blink-1 {
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes blink-2 {
+  50% {
+    opacity: 0;
+  }
+}
+
+.section-error .mo-fire {
+  width: 200px;
+  height: auto;
+  position: absolute;
+  left: 30px;
+  margin-left: -100px;
+  bottom: -50px;
+  transform: scale(0.8) rotate(20deg);
+}
+.section-error .mo-fire svg {
+  width: 100%;
+  height: auto;
+  position: relative;
+  filter: drop-shadow(2px 4px 16px rgba(255, 119, 0, 0.5));
+}
+.section-error .flame {
+  animation-name: flamefly;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 0;
+  transform-origin: 50% 50% 0;
+}
+.section-error .flame.one {
+  animation-delay: 1s;
+  animation-duration: 2s;
+}
+.section-error .flame3.two {
+  animation-duration: 4s;
+  animation-delay: 1s;
+}
+
+.section-error .flame-main {
+  animation-name: flameWobble;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.section-error .flame-main.one {
+  animation-duration: 3s;
+  animation-delay: 1s;
+}
+.section-error .flame-main.two {
+  animation-duration: 2s;
+  animation-delay: 1s;
+}
+.section-error .flame-main.three {
+  animation-duration: 1s;
+  animation-delay: 2s;
+}
+.section-error .flame-main.four {
+  animation-duration: 2s;
+  animation-delay: 3s;
+}
+.section-error .flame-main.five {
+  animation-duration: 1s;
+  animation-delay: 3s;
+}
+@keyframes flameWobble {
+  50% {
+    transform: scale(1, 1.2) translate(0, -30px) rotate(-2deg);
+  }
+}
+@keyframes flamefly {
+  0% {
+    transform: translate(0) rotate(180deg);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-20px, -100px) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+.section-error .icon-bg {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+}
+
+.section-error .icon-bg svg {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  filter: drop-shadow(3px 3px 0px #f0f5ff);
+}

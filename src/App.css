@@ -75,6 +75,22 @@
   margin-right: 0.5rem;
 }
 
+/* loading */
+.loading-resources {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.loading-resources svg {
+  width: 200px;
+  height: 200px;
+}
+
+/* loading button */
+
 /* Breadcrumbs */
 .breadcrumbs {
   display: flex;
