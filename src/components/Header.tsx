@@ -1,6 +1,5 @@
 import "../css/Header.css";
 import { Link, useNavigate } from "react-router-dom";
-import data from "../Data";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import API_BASE_URL from "../config";
