@@ -15,6 +15,7 @@ import UpdateResourceDetails from "./components/UpdateResourceDetails";
 import UpdateFile from "./components/UpdateFile";
 import UpdateSubject from "./components/UpdateSubject";
 import Login from "./components/Login";
+import { Analytics } from "@vercel/analytics/react";
 
 import Home from "./components/Home";
 
@@ -72,6 +73,7 @@ function App() {
           />
         </Routes>
       </Router>
+      <Analytics />
     </>
   );
 }
