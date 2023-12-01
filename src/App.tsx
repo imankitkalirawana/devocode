@@ -39,7 +39,7 @@ const ServerStatusCheck = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const checkServerStatus = async () => {
       try {
-        await axios.get(`${API_BASE_URL}/api/status`);
+        await axios.get(`${API_BASE_URL}/api/statu`);
         setServerOnline(true);
       } catch (error) {
         console.error("Server is not reachable.", error);
