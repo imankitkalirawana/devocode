@@ -82,9 +82,12 @@ const UpdateResourceDetails = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     var file = e.target.files![0];
     var extension = file.name.split(".").pop();
+    var dataTitle = newData.title.split(" ").join("_");
     file = new File(
       [file],
-      `${subject?.code}_${resourceType}_${Date.now()}.${extension}`,
+      `${
+        subject?.code
+      }_${resourceType}_${dataTitle}_${Date.now()}.${extension}`,
       {
         type: file.type,
       }
