@@ -5,17 +5,27 @@ const Banner = () => {
   return (
     <>
       <div className="banner">
-        <h1 className="banner-title">Learn with ease...</h1>
-        <p className="banner-text">
-          Get access to your study material in one go.
-        </p>
-        <div className="btns">
-          <Link to="/resources" className="btn btn-primary">
-            Resources
-          </Link>
-          <a href="https://github.com/imankitkalirawana" className="btn">
-            Developer
-          </a>
+        <div className="banner-text">
+          <h2 className="primary-text">Learn Anything, Anywhere, Anytime</h2>
+          <p className="faded">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
+            quisquam eos nulla, aspernatur nobis sunt!
+          </p>
+          <div className="btns">
+            <Link className="btn btn-primary" to="/resources">
+              Resources
+            </Link>
+            <a
+              href="https://forms.gle/yAb95M9ToQGgyWuP8"
+              target="_blank"
+              className="btn"
+            >
+              Contribute
+            </a>
+          </div>
+        </div>
+        <div className="banner-img">
+          <img className="img" src="/Banner.png" alt="" />
         </div>
       </div>
     </>
