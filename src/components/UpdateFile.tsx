@@ -74,7 +74,24 @@ const UpdateFile = () => {
       })
       .then((res) => {
         console.log(res.data);
+        deleteFile();
         window.location.href = `/resources/update/${resourceType}/${resource.subject}`;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // delete file from server
+  const deleteFile = () => {
+    axios
+      .delete(`${API_BASE_URL}/uploads/${resource.file}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);

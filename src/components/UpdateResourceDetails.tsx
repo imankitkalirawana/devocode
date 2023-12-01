@@ -99,6 +99,7 @@ const UpdateResourceDetails = () => {
       file: file.name,
     }));
   };
+  console.log(file);
 
   // handle form submit
   const handleFormSubmit = () => {
