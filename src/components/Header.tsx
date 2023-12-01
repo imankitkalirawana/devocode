@@ -16,6 +16,7 @@ const Header = () => {
   // sidebar functionality
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
+  const [isToken, setIsToken] = useState(false);
   const navigate = useNavigate();
 
   const decodeToken = (token: any) => {
@@ -33,6 +34,7 @@ const Header = () => {
     const userId = localStorage.getItem("userId");
 
     if (token) {
+      setIsToken(true);
       const decodedToken = decodeToken(token);
 
       if (decodedToken) {
@@ -55,6 +57,7 @@ const Header = () => {
       }
     } else {
       setLoggedInUser(null);
+      setIsToken(false);
     }
   }, []);
 
@@ -65,9 +68,9 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setLoggedInUser(null);
+    setIsToken(false);
     navigate("/login");
   };
-  console.log(loggedInUser);
 
   return (
     <>
@@ -128,7 +131,7 @@ const Header = () => {
         </nav>
         {/* login logout buttons */}
         <div className="auth">
-          {loggedInUser ? (
+          {isToken ? (
             <>
               <button
                 className="btn btn-primary login-register"
@@ -243,7 +246,7 @@ const Header = () => {
             </a>
           </li>
         </ul>
-        {loggedInUser ? (
+        {isToken ? (
           <button
             className="btn btn-primary login-register"
             onClick={handleLogout}
