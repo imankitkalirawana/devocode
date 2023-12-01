@@ -34,13 +34,13 @@ const PrivateRoute = ({ element }: any) => {
 };
 
 const ServerStatusCheck = ({ children }: { children: React.ReactNode }) => {
-  const [isServerOnline, setServerOnline] = useState(true);
+  const [isServerOnline, setServerOnline] = useState(false);
 
   useEffect(() => {
     const checkServerStatus = async () => {
       try {
-        await axios.get(`${API_BASE_URL}/api/statu`);
-        setServerOnline(true);
+        await axios.get(`${API_BASE_URL}/api/status`);
+        setServerOnline(false);
       } catch (error) {
         console.error("Server is not reachable.", error);
         setServerOnline(false);
