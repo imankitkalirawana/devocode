@@ -101,7 +101,14 @@ function App() {
           </Routes>
         </ServerStatusCheck>
       </Router>
-      <Analytics />
+      <Analytics
+        beforeSend={(event) => {
+          if (event.url.includes("/update") || event.url.includes("/add")) {
+            return null;
+          }
+          return event;
+        }}
+      />
     </>
   );
 }
