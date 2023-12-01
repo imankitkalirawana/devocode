@@ -17,6 +17,7 @@ interface File {
   url: string;
   description: string;
   file: string;
+  filesize: string;
 }
 const UpdateResourceDetails = () => {
   const { subjectId, resourceType } = useParams();
@@ -33,6 +34,7 @@ const UpdateResourceDetails = () => {
     title: "",
     description: "",
     file: "",
+    filesize: "",
     subject: {
       $oid: "",
     },
@@ -80,26 +82,35 @@ const UpdateResourceDetails = () => {
 
   // handle file change
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    var file = e.target.files![0];
-    var extension = file.name.split(".").pop();
-    var dataTitle = newData.title.split(" ").join("_");
-    file = new File(
-      [file],
-      `${
-        subject?.code
-      }_${resourceType}_${dataTitle}_${Date.now()}.${extension}`,
-      {
-        type: file.type,
-      }
-    );
+    const selectedFile = e.target.files![0];
 
-    setFile(file);
-    setNewData((prevData) => ({
-      ...prevData,
-      file: file.name,
-    }));
+    // Check if a file is selected
+    if (selectedFile) {
+      // Get the file size in bytes
+      const fileSize = selectedFile.size;
+      const fileSizeInMB = (fileSize / (1024 * 1024)).toFixed(2);
+
+      var file = e.target.files![0];
+      var extension = file.name.split(".").pop();
+      var dataTitle = newData.title.split(" ").join("_");
+      file = new File(
+        [file],
+        `${
+          subject?.code
+        }_${resourceType}_${dataTitle}_${Date.now()}.${extension}`,
+        {
+          type: file.type,
+        }
+      );
+
+      setFile(file);
+      setNewData((prevData) => ({
+        ...prevData,
+        file: file.name,
+        filesize: fileSizeInMB,
+      }));
+    }
   };
-  console.log(file);
 
   // handle form submit
   const handleFormSubmit = () => {
@@ -131,6 +142,7 @@ const UpdateResourceDetails = () => {
           title: "",
           description: "",
           file: "",
+          filesize: "",
           subject: {
             $oid: "",
           },

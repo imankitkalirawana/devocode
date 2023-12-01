@@ -17,6 +17,7 @@ interface File {
   url: string;
   description: string;
   file: string;
+  filesize: string;
 }
 
 const Files: React.FC = () => {
@@ -149,7 +150,7 @@ const Files: React.FC = () => {
                             {file.title}
                           </h3>
                           <p className="section-list-item-description">
-                            {file.description}
+                            {file.description} ({parseInt(file.filesize)}MB)
                           </p>
                         </div>
                         <div className="section-list-item-btn">
