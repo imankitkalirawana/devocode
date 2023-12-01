@@ -150,7 +150,10 @@ const Files: React.FC = () => {
                             {file.title}
                           </h3>
                           <p className="section-list-item-description">
-                            {file.description} ({parseInt(file.filesize)}MB)
+                            {file.description}
+                            {file.filesize
+                              ? `(${parseInt(file.filesize)}MB)`
+                              : ""}
                           </p>
                         </div>
                         <div className="section-list-item-btn">
