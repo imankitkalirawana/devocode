@@ -16,10 +16,13 @@ import UpdateFile from "./components/UpdateFile";
 import UpdateSubject from "./components/UpdateSubject";
 import Login from "./components/Login";
 import { Analytics } from "@vercel/analytics/react";
-
+import API_BASE_URL from "./config";
+import ServerError from "./components/ServerError";
 import Home from "./components/Home";
 
 import "./App.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const isAuthenticated = () => {
   // Check if the user is logged in (you can implement your own logic)
@@ -30,48 +33,73 @@ const PrivateRoute = ({ element }: any) => {
   return isAuthenticated() ? element : <Navigate to="/login" />;
 };
 
+const ServerStatusCheck = ({ children }: { children: React.ReactNode }) => {
+  const [isServerOnline, setServerOnline] = useState(true);
+
+  useEffect(() => {
+    const checkServerStatus = async () => {
+      try {
+        await axios.get(`${API_BASE_URL}/api/subjects`);
+        setServerOnline(true);
+      } catch (error) {
+        console.error("Server is not reachable.", error);
+        setServerOnline(false);
+      }
+    };
+
+    checkServerStatus();
+  }, []);
+
+  return isServerOnline ? <>{children}</> : <ServerError />;
+};
+
 function App() {
   return (
     <>
       <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {/* login route*/}
-          <Route path="/login" element={<Login />} />
-          {/* register route*/}
+        <ServerStatusCheck>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            {/* login route*/}
+            <Route path="/login" element={<Login />} />
+            {/* register route*/}
 
-          <Route
-            path="/resources/add"
-            element={<PrivateRoute element={<AddData />} />}
-          />
-          <Route
-            path="/resources/update"
-            element={<PrivateRoute element={<UpdateData />} />}
-          />
-          <Route
-            path="/resources/update/subject/:subjectId"
-            element={<PrivateRoute element={<UpdateSubject />} />}
-          />
-          <Route
-            path="/resources/update/:subjectId"
-            element={<PrivateRoute element={<UpdateResources />} />}
-          />
-          <Route
-            path="/resources/update/:resourceType/:subjectId"
-            element={<PrivateRoute element={<UpdateResourceDetails />} />}
-          />
-          <Route
-            path="/resources/update/:resourceType/update/:resourceId"
-            element={<PrivateRoute element={<UpdateFile />} />}
-          />
-          <Route path="/resources" element={<Resources />} />
-          <Route path="/resources/:subjectId" element={<ResourcesDetails />} />
-          <Route
-            path="/resources/:resourceType/:subjectId"
-            element={<Files />}
-          />
-        </Routes>
+            <Route
+              path="/resources/add"
+              element={<PrivateRoute element={<AddData />} />}
+            />
+            <Route
+              path="/resources/update"
+              element={<PrivateRoute element={<UpdateData />} />}
+            />
+            <Route
+              path="/resources/update/subject/:subjectId"
+              element={<PrivateRoute element={<UpdateSubject />} />}
+            />
+            <Route
+              path="/resources/update/:subjectId"
+              element={<PrivateRoute element={<UpdateResources />} />}
+            />
+            <Route
+              path="/resources/update/:resourceType/:subjectId"
+              element={<PrivateRoute element={<UpdateResourceDetails />} />}
+            />
+            <Route
+              path="/resources/update/:resourceType/update/:resourceId"
+              element={<PrivateRoute element={<UpdateFile />} />}
+            />
+            <Route path="/resources" element={<Resources />} />
+            <Route
+              path="/resources/:subjectId"
+              element={<ResourcesDetails />}
+            />
+            <Route
+              path="/resources/:resourceType/:subjectId"
+              element={<Files />}
+            />
+          </Routes>
+        </ServerStatusCheck>
       </Router>
       <Analytics />
     </>

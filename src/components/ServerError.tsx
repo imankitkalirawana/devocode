@@ -217,7 +217,10 @@ const ServerError = () => {
         </div>
       </div>
       <div className="error">
-        <p className="error-message">Internal Server Error</p>
+        <p className="error-message">
+          We apologize, but it seems that the server is currently burning.
+          Please try again later.
+        </p>
       </div>
     </div>
   );

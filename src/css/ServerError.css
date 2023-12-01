@@ -917,3 +917,7 @@
   left: 0%;
   filter: drop-shadow(3px 3px 0px #f0f5ff);
 }
+
+.error-message {
+  text-align: center;
+}
