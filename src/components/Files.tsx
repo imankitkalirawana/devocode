@@ -36,12 +36,9 @@ const Files: React.FC = () => {
       .get(`${API_BASE_URL}/api/subjects/${subjectId}`)
       .then((res) => {
         setSubject(res.data);
-        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false);
-        setServerError(true);
       });
 
     // Fetch files data
@@ -51,10 +48,13 @@ const Files: React.FC = () => {
         setFiles(res.data);
         if (res.data.length === 0) {
           setError(1);
+          setLoading(false);
         }
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
+        setServerError(true);
       });
   }, [subjectId, resourceType]);
 
