@@ -30,7 +30,7 @@ const UpdateResources = () => {
   // get selected subject from api
   useEffect(() => {
     axios
-      .get(`${API_BASE_URL}/api/subjects/${subjectId}`)
+      .get(`${API_BASE_URL}/api/resources/subjects/${subjectId}`)
       .then((res) => {
         setSubject(res.data);
       })

@@ -1,5 +1,5 @@
 import "../css/Header.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import API_BASE_URL from "../config";
@@ -18,6 +18,8 @@ const Header = () => {
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
   const [isToken, setIsToken] = useState(false);
   const navigate = useNavigate();
+  // get current url
+  const location = useLocation();
 
   const decodeToken = (token: any) => {
     try {
@@ -75,77 +77,91 @@ const Header = () => {
   return (
     <>
       <header className="header">
-        <Link to="/" className="logo">
-          <img className="logo-icon" src="/logo-dark.png" alt="logo" />
-          <h1 className="logo-text">
-            Devo<span className="color">Code</span>
-          </h1>
-        </Link>
-        {/* dropdown menu */}
-        <nav className="dropdown-menu">
-          <ul className="list-items">
-            <li className="list-items-item">
-              <Link to="/" className="list-items-link">
-                Home
-              </Link>
-            </li>
-            <li className="list-items-item">
-              <Link to="/resources" className="list-items-link">
-                Resources
-              </Link>
-            </li>
-            {loggedInUser ? (
-              <>
-                <li className="list-items-item">
-                  <Link to="/resources/add" className="list-items-link">
-                    Add
-                  </Link>
-                </li>
-                <li className="list-items-item">
-                  <Link className="list-items-link" to="/resources/update">
-                    Update
-                  </Link>
-                </li>
-              </>
-            ) : (
-              <>
-                <li className="list-items-item">
-                  <a
-                    href="https://divinelydeveloper.me"
-                    className="list-items-link"
-                  >
-                    About
-                  </a>
-                </li>
-                <li className="list-items-item">
-                  <a
-                    href="https://github.com/imankitkalirawana"
-                    className="list-items-link"
-                  >
-                    Github
-                  </a>
-                </li>
-              </>
-            )}
-          </ul>
-        </nav>
+        <div className="header-left">
+          <Link to="/" className="logo">
+            <img className="logo-icon" src="/logo-dark.png" alt="logo" />
+            <h1 className="logo-text">
+              Devo<span className="color">Code</span>
+            </h1>
+          </Link>
+          {/* dropdown menu */}
+          <nav className="dropdown-menu">
+            <ul className="list-items">
+              <li className="list-items-item">
+                <Link to="/" className="list-items-link">
+                  Home
+                </Link>
+              </li>
+              <li className="list-items-item">
+                <Link to="/resources" className="list-items-link">
+                  Resources
+                </Link>
+              </li>
+              {loggedInUser ? (
+                <>
+                  <li className="list-items-item">
+                    <Link to="/resources/add" className="list-items-link">
+                      Add
+                    </Link>
+                  </li>
+                  <li className="list-items-item">
+                    <Link className="list-items-link" to="/resources/update">
+                      Update
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="list-items-item">
+                    <a
+                      href="https://divinelydeveloper.me"
+                      className="list-items-link"
+                    >
+                      About
+                    </a>
+                  </li>
+                  <li className="list-items-item">
+                    <a
+                      href="https://github.com/imankitkalirawana"
+                      className="list-items-link"
+                    >
+                      Github
+                    </a>
+                  </li>
+                </>
+              )}
+            </ul>
+          </nav>
+        </div>
         {/* login logout buttons */}
         <div className="auth">
           {isToken ? (
             <>
               <button
-                className="btn btn-primary login-register"
+                className="btn login-register btn-slim"
                 onClick={handleLogout}
               >
                 Logout
               </button>
             </>
           ) : (
-            <>
-              <Link to="/login" className="btn btn-primary login-register">
-                Login
+            <div className="btns">
+              <Link
+                to="/contact"
+                className="btn login-register btn-faded faded"
+              >
+                Contact
               </Link>
-            </>
+              {location.pathname === "/login" ? (
+                <Link to="/register" className="btn login-register btn-slim">
+                  Signup
+                </Link>
+              ) : (
+                <Link to="/login" className="btn login-register btn-slim">
+                  Login
+                </Link>
+              )}
+            </div>
           )}
         </div>
         {/* Toggler */}
@@ -153,7 +169,7 @@ const Header = () => {
           <i
             className={`fa-regular ${
               sidebarOpen ? "fa-xmark " : ""
-            }fa-bars-staggered`}
+            }fa-grip-lines`}
           ></i>
         </div>
       </header>
@@ -248,13 +264,13 @@ const Header = () => {
         </ul>
         {isToken ? (
           <button
-            className="btn btn-primary login-register"
+            className="btn login-register btn-slim"
             onClick={handleLogout}
           >
             Logout
           </button>
         ) : (
-          <Link to="/login" className="btn btn-primary login-register">
+          <Link to="/login" className="btn btn-primary login-register btn-slim">
             Login
           </Link>
         )}

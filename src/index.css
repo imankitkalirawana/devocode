@@ -1,40 +1,103 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@font-face {
+  font-family: "Geist";
+  src: url("./fonts/Geist-Thin.otf");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("./fonts/Geist-UltraLight.otf");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("./fonts/Geist-Light.otf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("./fonts/Geist-Regular.otf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("./fonts/Geist-Medium.otf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("./fonts/Geist-SemiBold.otf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("./fonts/Geist-Bold.otf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("./fonts/Geist-Black.otf");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("./fonts/Geist-UltraBlack.otf");
+  font-weight: 900;
+}
+
 :root {
   --primary: #5d74bb;
   --secondary: #c7c8da;
   --primary-hover: #34296e83;
   --light: #e9f7f7;
   --lighter: #e0edef;
+  --lighter-1: #f5f5f5;
   --dark: #1d2429;
   --darker: #242c30;
   --font-primary: "Outfit", sans-serif;
   --font-secondary: "JetBrains Mono", sans-serif;
   --faded: #8c8e90;
   --border: #e5ebe9;
+  --border-hover: #c7c8da;
+  --border-focus: #a0a0a0;
   --light-const: #e9eef1;
   --dark-const: #1d2429;
   --bg-ambient: rgba(255, 255, 255, 0.318);
   --blur: blur(300px);
   --primary-light: #fff;
   --danger: #ec6a5e;
+  --danger-light: rgb(39, 20, 21);
   --warning: #f9c851;
-  --success: #68e179;
+  --success: #09c5b2;
+  --success-light: #083a33;
   --ambient-box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
     rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
 [data-theme="dark"] {
-  --primary: #508199;
-  --primary-hover: rgba(23, 61, 81, 0.455);
+  --primary: #fff;
+  --primary-hover: #cccccc;
   --secondary: #3e3f50;
-  --light: #1d2429;
-  --lighter: #242c30;
-  --dark: #e9f7f7;
+  --light: #000;
+  --lighter: rgb(26, 26, 26);
+  --lighter-1: rgb(10, 10, 10);
+  --dark: #ededed;
   --darker: #f9f9f9;
   --font: "Outfit", sans-serif;
   --faded: #999;
-  --border: #8b96a5;
+  --border: rgb(36, 36, 36);
+  --border-hover: rgb(255, 255, 255, 0.3);
+  --border-focus: rgba(160, 160, 160, 0.5);
   --bg-ambient: #0f0f0f69;
   --blur: blur(50px);
   --primary-light: #508199;
@@ -54,7 +117,7 @@
 body {
   background: var(--light);
   color: var(--dark);
-  font-family: "Outfit", sans-serif;
+  font-family: "Geist", arial;
 }
 
 li {
@@ -63,30 +126,33 @@ li {
 
 a {
   text-decoration: none;
-  color: var(--dark);
+  color: inherit;
 }
 
 input,
 textarea {
-  outline: none;
-  border: 2px solid var(--lighter);
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
+  outline: 3px solid transparent;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.75rem 2rem;
+  padding-left: 1rem;
   font-size: 1rem;
+  font-weight: 300;
   color: var(--dark);
-  background: var(--lighter);
+  background: var(--lighter-1);
   font-family: "Outfit", sans-serif;
   transition: all 0.3s ease-in-out;
 }
 
 input:hover,
 textarea:hover {
-  border: 2px solid var(--border);
+  border: 1px solid var(--primary-hover);
 }
 
 input:focus,
 textarea:focus {
-  border: 2px solid var(--primary);
+  border: 1px solid var(--primary);
+  outline: 3px solid var(--border-focus);
 }
 
 /* custom common */
@@ -99,23 +165,30 @@ textarea:focus {
   align-items: center;
   grid-gap: 0.5rem;
 }
-
 .btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  font-size: 1rem;
+  white-space: nowrap;
+  padding: 0.75rem 1rem;
+  font-size: 14px; /* Font size is set initially here */
   font-weight: 400;
   color: var(--primary);
   background: var(--light);
-  transition: all 0.2s ease-in-out;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  width: fit-content;
+  cursor: pointer;
 }
 
 .btn:hover {
-  opacity: 0.9;
+  background: var(--lighter);
+}
+
+.btn[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .btn-primary {
@@ -123,7 +196,42 @@ textarea:focus {
   color: var(--light);
 }
 
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-slim {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.btn-round {
+  border-radius: 9999px;
+}
+
+.btn-faded {
+  padding: 0.5rem 1rem;
+  color: var(--faded);
+  border: 1px solid transparent;
+}
+
 .btn-danger {
   border-color: var(--danger);
   color: var(--danger);
+}
+
+.btn-danger:hover {
+  background: var(--danger-light);
+}
+
+.icon-left {
+  margin-right: 8px;
+}
+
+.divider-horizontal {
+  width: 100%;
+  height: 1px;
+  border: none;
+  background: var(--border);
+  margin: 1rem 0;
 }

@@ -43,13 +43,13 @@ const UpdateResourceDetails = () => {
   const resetPopup = () => {
     setTimeout(() => {
       setStatus("idle");
-    }, 3000);
+    }, 5000);
   };
 
   useEffect(() => {
     // Fetch subject data
     axios
-      .get(`${API_BASE_URL}/api/subjects/${subjectId}`)
+      .get(`${API_BASE_URL}/api/resources/subjects/${subjectId}`)
       .then((res) => {
         setSubject(res.data);
       })
@@ -136,6 +136,7 @@ const UpdateResourceDetails = () => {
         uploadFile();
         setStatus("success");
         setMessage("Added");
+        setTitle("Success");
         resetPopup();
         setFiles([...files, res.data]);
         setNewData({

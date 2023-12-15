@@ -18,7 +18,7 @@ const UpdateSubject = () => {
 
   useEffect(() => {
     axios
-      .get(`${API_BASE_URL}/api/subjects/${subjectId}`)
+      .get(`${API_BASE_URL}/api/resources/subjects/${subjectId}`)
       .then((res) => {
         setSubject(res.data);
       })
@@ -30,7 +30,11 @@ const UpdateSubject = () => {
   // update subject data
   const handleSubmit = () => {
     axios
-      .put(`${API_BASE_URL}/api/subjects/${subjectId}`, subject)
+      .put(`${API_BASE_URL}/api/resources/subjects/${subjectId}`, subject, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
         console.log(res.data);
       })
@@ -44,7 +48,7 @@ const UpdateSubject = () => {
   //   delete subject data
   const handleDelete = () => {
     axios
-      .delete(`${API_BASE_URL}/api/subjects/${subjectId}`, {
+      .delete(`${API_BASE_URL}/api/resources/subjects/${subjectId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

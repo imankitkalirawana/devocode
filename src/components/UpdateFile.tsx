@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Popup from "reactjs-popup";
+import CustomPopup from "./Popup";
 import API_BASE_URL from "../config";
 
 interface Resource {
@@ -18,11 +19,14 @@ interface Resource {
 const UpdateFile = () => {
   const { resourceId, resourceType } = useParams();
   const [resource, setResource] = useState<Resource>({} as Resource);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [status, setStatus] = useState("idle");
+  const [message, setMessage] = useState("");
+  const [title, setTitle] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get(`${API_BASE_URL}/api/${resourceType}/${resourceId}`)
+      .get(`${API_BASE_URL}/api/resources/${resourceType}/get/${resourceId}`)
       .then((res) => {
         setResource(res.data);
       })
@@ -42,24 +46,41 @@ const UpdateFile = () => {
 
   const resetPopup = () => {
     setTimeout(() => {
-      setIsSuccess(false);
+      setStatus("idle");
     }, 5000);
   };
 
   const handleSubmit = () => {
+    if (resource.title === "") {
+      setStatus("error");
+      setMessage("Please fill all fields");
+      setTitle("Error");
+      resetPopup();
+      return;
+    }
     axios
-      .put(`${API_BASE_URL}/api/${resourceType}/${resourceId}`, resource, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
+      .put(
+        `${API_BASE_URL}/api/resources/${resourceType}/${resourceId}`,
+        resource,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
       .then((res) => {
         console.log(res.data);
-        setIsSuccess(true);
+        setStatus("success");
+        setMessage("Updated");
+        setTitle("Success");
         resetPopup();
       })
       .catch((err) => {
         console.log(err);
+        setStatus("error");
+        setMessage("Error");
+        setTitle("Error");
+        resetPopup();
       });
   };
 
@@ -67,7 +88,7 @@ const UpdateFile = () => {
 
   const handleDelete = () => {
     axios
-      .delete(`${API_BASE_URL}/api/${resourceType}/${resourceId}`, {
+      .delete(`${API_BASE_URL}/api/resources/${resourceType}/${resourceId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -75,10 +96,18 @@ const UpdateFile = () => {
       .then((res) => {
         console.log(res.data);
         deleteFile();
+        setStatus("success");
+        setMessage("Deleted");
+        setTitle("Success");
+        resetPopup();
         window.location.href = `/resources/update/${resourceType}/${resource.subject}`;
       })
       .catch((err) => {
         console.log(err);
+        setStatus("error");
+        setMessage("Error");
+        setTitle("Error");
+        resetPopup();
       });
   };
 
@@ -99,91 +128,106 @@ const UpdateFile = () => {
   };
 
   return (
-    <div className="resources section">
-      {/* popup */}
-      {isSuccess && (
-        <div className={`popup`}>
-          <div className="popup-content">
-            <div className="popup-message">
-              <p className="popup-status">Success</p>
-              <p className="popup-title">Resource updated</p>
-            </div>
-            <div className="popup-icon">
-              <i
-                onClick={() => {
-                  setIsSuccess(false);
-                }}
-                className="fa-sharp fa-regular fa-circle-check"
-              ></i>
-            </div>
-          </div>
-        </div>
-      )}
-      {/* breadcrumbs */}
-      <div className="breadcrumbs">
-        <Link className="breadcrumbs-item" to="/">
-          Home
-        </Link>
-        <i className="fas fa-chevron-right breadcrumbs-item"></i>
-        <Link className="breadcrumbs-item" to="/resources/update">
-          Update
-        </Link>
-        <i className="fas fa-chevron-right breadcrumbs-item"></i>
-        <Link
-          className="breadcrumbs-item"
-          to={`/resources/update/${resourceType}/`}
+    <div className="container-fluid">
+      {status === "success" ? (
+        <CustomPopup
+          status="success"
+          message={`${message}`}
+          title={title ? `${title}` : `${resource.title}`}
+        />
+      ) : status === "error" ? (
+        <CustomPopup status="error" message="Error" title={`${title}`} />
+      ) : null}
+      <div className="container-stack">
+        <div
+          className="btn btn-slim btn-faded"
+          onClick={() =>
+            navigate(`/resources/${resourceType}/${resource.subject}`)
+          }
         >
-          {resourceType}
-        </Link>
-        <i className="fas fa-chevron-right breadcrumbs-item"></i>
-        <span className="breadcrumbs-item selected">{resource.title}</span>
+          <i className="fa-regular fa-arrow-left icon-left"></i>Back
+        </div>
+        <div className="container-narrative">
+          <h1>Update File</h1>
+          <p>
+            Use this form to update a file. You can update the title, file, and
+            description.
+          </p>
+        </div>
       </div>
-      <h2 className="section-title">Update File</h2>
-      {/* input fields and submit button */}
-      <div className="form">
-        <div className="form-input-group">
-          <div className="form-input">
-            <label htmlFor="title">Title</label>
-            <input
-              type="text"
-              name="title"
-              id="title"
-              value={resource.title}
-              onChange={handleInput}
-            />
+      <div className="container-stack-horizontal">
+        <div className="container-sidebar">
+          <div className="stack-title-card">
+            <i className="fa-regular fa-file"></i>
+            <h1>{resource.title}</h1>
           </div>
-          <div className="form-input">
-            <label htmlFor="description">Description</label>
-            <textarea
-              name="description"
-              id="description"
-              value={resource.description}
-              onChange={handleInput}
-            ></textarea>
+          <div className="divider-horizontal"></div>
+          <div className="stack-details">
+            <div className="stack-progress">
+              <div className="progress-circle"></div>
+              <div className="progress-line"></div>
+              <span className="stack-name">{resource.title}</span>
+            </div>
+            <div className="stack-progress">
+              <div className="progress-circle"></div>
+              <div className="progress-line"></div>
+              <span className="stack-name">{resourceType}</span>
+            </div>
           </div>
         </div>
-        <div className="form-btns">
-          <button className="btn btn-primary" onClick={handleSubmit}>
-            Update
-          </button>
-          <Popup trigger={<button className="btn btn-danger">Delete</button>}>
-            <>
-              <div className={`popup`}>
-                <div className="popup-content">
-                  <div className="popup-message">
-                    <p className="popup-status">Delete</p>
-                    <p className="popup-title">Are you sure?</p>
+        <div className="container-card">
+          <div className="container-card-header">
+            <h2>Update File</h2>
+          </div>
+          <hr className="divider-horizontal" />
+          <div className="container-card-form form">
+            <div className="form-input">
+              <label htmlFor="title">Title</label>
+              <input
+                type="text"
+                name="title"
+                id="title"
+                placeholder="my-file"
+                value={resource.title}
+                onChange={handleInput}
+              />
+            </div>
+            <div className="form-input">
+              <label htmlFor="description">Description</label>
+              <input
+                type="text"
+                name="description"
+                id="description"
+                placeholder="This is my file."
+                value={resource.description}
+                onChange={handleInput}
+              />
+            </div>
+            <div className="form-input form-btns">
+              <Popup
+                trigger={<button className="btn btn-danger">Delete</button>}
+              >
+                <>
+                  <div className="popup">
+                    <div className="popup-upper">
+                      <div className="popup-title">Delete</div>
+                      <div className="popup-message">Are you sure?</div>
+                    </div>
+                    <hr className="divider-horizontal" />
+                    <div className="popup-btns">
+                      <button className="btn btn-danger" onClick={handleDelete}>
+                        Delete
+                      </button>
+                    </div>
                   </div>
-                  <div className="popup-icon">
-                    <i
-                      onClick={handleDelete}
-                      className="fa-sharp fa-regular fa-circle-check"
-                    ></i>
-                  </div>
-                </div>
-              </div>
-            </>
-          </Popup>
+                </>
+              </Popup>
+
+              <button className="btn btn-primary" onClick={handleSubmit}>
+                Update
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

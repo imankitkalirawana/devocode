@@ -1,15 +1,13 @@
 import Banner from "./Banner";
-// import Request from "./Request";
+import NewsBanner from "./NewsBanner";
 import WarningPopup from "./WarningPopup";
-import Contribute from "./Contribute";
 
 const Home = () => (
-  <>
+  <div className="container">
+    <NewsBanner />
     <Banner />
-    {/* <Request /> */}
-    <Contribute />
     <WarningPopup />
-  </>
+  </div>
 );
 
 export default Home;

@@ -13,10 +13,10 @@ interface Subject {
 const UpdateData = () => {
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  // get subjects from api
+
   useEffect(() => {
     axios
-      .get(`${API_BASE_URL}/api/subjects`)
+      .get(`${API_BASE_URL}/api/resources/subjects`)
       .then((res) => {
         setSubjects(res.data);
       })

@@ -2,15 +2,23 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import API_BASE_URL from "../config";
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [isEmpty, setIsEmpty] = useState(false);
 
   const handleLogin = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    if (!username || !password) {
+      setIsEmpty(true);
+      return;
+    }
+
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/login`, {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/login`, {
         username,
         password,
       });
@@ -43,28 +51,40 @@ const Login = () => {
       navigate("/");
     }
   }, []);
+
   return (
-    <div className="section resources">
-      <h1>Login</h1>
+    <div className="section resources login-form">
+      <h1 className="section-title">Log in to Devocode</h1>
       <form className="form">
         <div className="form-input">
-          <label htmlFor="username">Username</label>
           <input
             type="text"
             name="username"
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
+            onChange={(e) => {
+              setUsername(e.target.value);
+              setIsEmpty(false);
+            }}
           />
         </div>
         <div className="form-input">
-          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setIsEmpty(false);
+            }}
           />
         </div>
 
-        <button className="btn btn-primary" onClick={handleLogin} type="submit">
+        <button
+          className="btn btn-primary"
+          onClick={handleLogin}
+          type="submit"
+          disabled={isEmpty}
+        >
           Login
         </button>
       </form>

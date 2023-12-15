@@ -4,15 +4,20 @@ import axios from "axios";
 import API_BASE_URL from "../config";
 import Loading from "./Loading";
 import ServerError from "./ServerError";
+import Popup from "reactjs-popup";
+import CustomPopup from "./Popup";
+import IsLogged from "../functions/IsLogged";
 
 interface Subject {
   code: string;
-  name: string;
+  title: string;
   description: string;
+  addedDate: Date;
   _id: string;
 }
 
 interface File {
+  _id: string;
   title: string;
   url: string;
   description: string;
@@ -21,19 +26,28 @@ interface File {
 }
 
 const Files: React.FC = () => {
+  const { isToken } = IsLogged();
   const { subjectId, resourceType } = useParams();
   const [subject, setSubject] = useState<Subject | null>(null);
   const [files, setFiles] = useState<File[]>([]);
   const [error, setError] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
   const [loading, setLoading] = useState(true);
   const [serverError, setServerError] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [status, setStatus] = useState("idle");
+  const [message, setMessage] = useState("");
+  const [title, setTitle] = useState("");
+
+  const resetPopup = () => {
+    setTimeout(() => {
+      setStatus("idle");
+    }, 5000);
+  };
 
   useEffect(() => {
     // Fetch subject data
     axios
-      .get(`${API_BASE_URL}/api/subjects/${subjectId}`)
+      .get(`${API_BASE_URL}/api/resources/subjects/${subjectId}`)
       .then((res) => {
         setSubject(res.data);
       })
@@ -59,15 +73,6 @@ const Files: React.FC = () => {
       });
   }, [subjectId, resourceType]);
 
-  // check window size
-  useEffect(() => {
-    if (window.innerWidth <= 640) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-  }, []);
-
   // sort files
   files.sort((a, b) => {
     if (a.title.toLowerCase() < b.title.toLowerCase()) {
@@ -76,6 +81,54 @@ const Files: React.FC = () => {
       return 1;
     }
   });
+
+  const handleDownload = async (file: any) => {
+    const response = await fetch(`${API_BASE_URL}/uploads/${file}`);
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${file}`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setStatus("success");
+    setMessage("Downloaded");
+    setTitle("Success");
+    resetPopup();
+  };
+
+  // delete file data with id
+
+  const handleDelete = (id: string) => {
+    return () => {
+      axios
+        .delete(`${API_BASE_URL}/api/resources/${resourceType}/${id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then(() => {
+          axios
+            .get(`${API_BASE_URL}/api/resources/${resourceType}/${subjectId}`)
+            .then((res) => {
+              setFiles(res.data);
+              setStatus("success");
+              setMessage("Deleted");
+              setTitle("Success");
+              resetPopup();
+            })
+            .catch((err) => {
+              console.log(err);
+              setStatus("error");
+              setMessage("Error deleting file");
+              setTitle("Error");
+              resetPopup();
+            });
+        });
+    };
+  };
 
   return (
     <>
@@ -89,6 +142,19 @@ const Files: React.FC = () => {
             )
           ) : (
             <>
+              {status === "success" ? (
+                <CustomPopup
+                  status="success"
+                  message={`${message}`}
+                  title={title}
+                />
+              ) : status === "error" ? (
+                <CustomPopup
+                  status="error"
+                  message="Error"
+                  title={`${title}`}
+                />
+              ) : null}{" "}
               {/* breadcrumbs */}
               <div className="breadcrumbs">
                 <Link className="breadcrumbs-item" to="/">
@@ -110,7 +176,6 @@ const Files: React.FC = () => {
                   {resourceType}
                 </span>
               </div>
-
               {!error ? (
                 <>
                   <h2 className="section-title">{resourceType}</h2>
@@ -133,39 +198,96 @@ const Files: React.FC = () => {
                         .includes(searchQuery.toLowerCase())
                     )
                     .map((file, index) => (
-                      <div className="section-list-item" key={index}>
-                        <a
-                          href={`${API_BASE_URL}/uploads/${file.file}`}
-                          className={`section-list-item-mini-details ${
-                            isMobile ? "section-mobile" : ""
-                          }`}
-                        >
-                          <i
-                            className={`fa-solid ${
-                              !isMobile ? "fa-file" : "fa-arrow-down-to-line"
-                            }`}
-                          ></i>
-                        </a>
-                        <div className="section-list-item-main-details">
-                          <h3 className="section-list-item-title">
-                            {file.title}
-                          </h3>
-                          <p className="section-list-item-description">
-                            {file.description}
-                            {file.filesize
-                              ? `(${parseInt(file.filesize)}MB)`
-                              : ""}
-                          </p>
-                        </div>
-                        <div className="section-list-item-btn">
-                          <a
-                            href={`${API_BASE_URL}/uploads/${file.file}`}
-                            className="btn btn-primary"
-                            target="__blank"
-                            download
+                      <div
+                        onClick={() => (
+                          window.open(`${API_BASE_URL}/uploads/${file.file}`),
+                          "_blank"
+                        )}
+                        key={index}
+                        className="section-card"
+                      >
+                        <div className="section-card-upper">
+                          <div className="section-card-upper-left">
+                            <i className="fa-solid fa-folder"></i>
+                            <div className="section-card-details">
+                              <h3 className="section-card-title-short">
+                                {file.title}
+                              </h3>
+                              <p className="section-card-title">
+                                {/* {subject.title} */}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div
+                            className="section-card-btn"
+                            onClick={(event) => {
+                              event.stopPropagation();
+                            }}
                           >
-                            Download
-                          </a>
+                            <button className="btn btn-faded">
+                              <i className="fa-solid fa-ellipsis-vertical"></i>
+                            </button>
+                            <div className="section-dropdown-content">
+                              <a
+                                className="section-dropdown-item"
+                                href={`${API_BASE_URL}/uploads/${file.file}`}
+                                target="_blank"
+                              >
+                                View
+                              </a>
+                              <a
+                                className="section-dropdown-item"
+                                // href={`${API_BASE_URL}/uploads/${file.file}`}
+                                onClick={() => handleDownload(file.file)}
+                              >
+                                Download
+                              </a>
+
+                              {isToken && (
+                                <>
+                                  <Link
+                                    className="section-dropdown-item"
+                                    to={`/resources/update/${resourceType}/update/${file._id}`}
+                                  >
+                                    Edit
+                                  </Link>
+                                  <Popup
+                                    trigger={
+                                      <span className="section-dropdown-item btn-danger">
+                                        Delete
+                                      </span>
+                                    }
+                                  >
+                                    <>
+                                      <div className="popup">
+                                        <div className="popup-upper">
+                                          <div className="popup-title">
+                                            Delete
+                                          </div>
+                                          <div className="popup-message">
+                                            Are you sure?
+                                          </div>
+                                        </div>
+                                        <hr className="divider-horizontal" />
+                                        <div className="popup-btns">
+                                          <button
+                                            className="btn btn-danger"
+                                            onClick={handleDelete(file._id)}
+                                          >
+                                            Delete
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </>
+                                  </Popup>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="section-card-lower">
+                          {file.filesize ? `${parseInt(file.filesize)}MB` : ""}
                         </div>
                       </div>
                     ))}

@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import API_BASE_URL from "../config";
 import Loading from "./Loading";
 import ServerError from "./ServerError";
+import Popup from "reactjs-popup";
+import AddedTime from "../functions/AddedTime";
+import IsLogged from "../functions/IsLogged";
 
 const resourceType = [
   // "assignments",
@@ -22,19 +25,22 @@ interface Subject {
   code: string;
   title: string;
   description: string;
+  addedDate: Date;
   _id: string;
 }
 
 const ResourcesDetails = () => {
+  const { isToken } = IsLogged();
   const { subjectId } = useParams();
   const [subject, setSubject] = useState<Subject>({} as Subject);
   const [loading, setLoading] = useState(true);
   const [serverError, setServerError] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
   // get selected subject from api
   useEffect(() => {
     axios
-      .get(`${API_BASE_URL}/api/subjects/${subjectId}`)
+      .get(`${API_BASE_URL}/api/resources/subjects/${subjectId}`)
       .then((res) => {
         setSubject(res.data);
         setLoading(false);
@@ -90,31 +96,49 @@ const ResourcesDetails = () => {
                 )
                 .sort()
                 .map((resource, index) => (
-                  <Link
-                    to={`/resources/${resource}/${subject._id}`}
+                  <div
+                    onClick={() =>
+                      navigate(`/resources/${resource}/${subject._id}`)
+                    }
                     key={index}
-                    className="section-list-item"
+                    className="section-card"
                   >
-                    <div className="section-list-item-mini-details">
-                      <i className="fa-solid fa-folder"></i>
+                    <div className="section-card-upper">
+                      <div className="section-card-upper-left">
+                        <i className="fa-solid fa-folder"></i>
+                        <div className="section-card-details">
+                          <h3 className="section-card-title-short">
+                            {resource}
+                          </h3>
+                        </div>
+                      </div>
                     </div>
-                    <div className="section-list-item-main-details">
-                      <h3
-                        className="section-list-item-title"
-                        style={
-                          resource.length <= 4
-                            ? { textTransform: "uppercase" }
-                            : {}
-                        }
-                      >
-                        {resource}
-                      </h3>
-                      <p className="section-list-item-description"></p>
-                    </div>
-                    <div className="section-list-item-btn">
-                      <button className="btn btn-primary">View</button>
-                    </div>
-                  </Link>
+                  </div>
+                  // <Link
+                  //   to={`/resources/${resource}/${subject._id}`}
+                  //   key={index}
+                  //   className="section-list-item"
+                  // >
+                  //   <div className="section-list-item-mini-details">
+                  //     <i className="fa-solid fa-folder"></i>
+                  //   </div>
+                  //   <div className="section-list-item-main-details">
+                  //     <h3
+                  //       className="section-list-item-title"
+                  //       style={
+                  //         resource.length <= 4
+                  //           ? { textTransform: "uppercase" }
+                  //           : {}
+                  //       }
+                  //     >
+                  //       {resource}
+                  //     </h3>
+                  //     <p className="section-list-item-description"></p>
+                  //   </div>
+                  //   <div className="section-list-item-btn">
+                  //     <button className="btn btn-primary">View</button>
+                  //   </div>
+                  // </Link>
                 ))}
             </div>
           </div>

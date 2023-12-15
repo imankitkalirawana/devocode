@@ -27,7 +27,7 @@ const Files: React.FC = () => {
   const resetPopup = () => {
     setTimeout(() => {
       setStatus("idle");
-    }, 3000);
+    }, 5000);
   };
 
   const handleNewSubjectInputChange = (
@@ -42,7 +42,7 @@ const Files: React.FC = () => {
   //   get subjects from api
   useEffect(() => {
     axios
-      .get(`${API_BASE_URL}/api/subjects`)
+      .get(`${API_BASE_URL}/api/resources/subjects`)
       .then((res) => {
         setSubjects(res.data);
       })
@@ -77,7 +77,7 @@ const Files: React.FC = () => {
     }
 
     axios
-      .post(`${API_BASE_URL}/api/subjects`, newSubjectData, {
+      .post(`${API_BASE_URL}/api/resources/subjects`, newSubjectData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -89,7 +89,7 @@ const Files: React.FC = () => {
         console.log(res.data);
         // fetch updated subjects
         axios
-          .get(`${API_BASE_URL}/api/subjects`)
+          .get(`${API_BASE_URL}/api/resources/subjects`)
           .then((res) => {
             setSubjects(res.data);
           })
@@ -104,7 +104,7 @@ const Files: React.FC = () => {
 
   return (
     <>
-      <div className="section resources">
+      <div className="container-fluid">
         {/* popup */}
         {status === "success" ? (
           <Popup
@@ -115,57 +115,84 @@ const Files: React.FC = () => {
         ) : status === "error" ? (
           <Popup status="error" message="Error" title={`${title}`} />
         ) : null}
-
-        {/* breadcrumbs */}
-        <div className="breadcrumbs">
-          <Link className="breadcrumbs-item" to="/">
-            Home
-          </Link>
-          <i className="fas fa-chevron-right breadcrumbs-item"></i>
-          <Link className="breadcrumbs-item" to="/resources">
-            Subjects
-          </Link>
-          <i className="fas fa-chevron-right breadcrumbs-item"></i>
-          <span className="breadcrumbs-item selected">Add</span>
+        <div className="container-stack">
+          <div className="btn btn-slim btn-faded">
+            <Link to="/resources">
+              <i className="fa-regular fa-arrow-left icon-left"></i>Back
+            </Link>
+          </div>
+          <div className="container-narrative">
+            <h1>Add Subject</h1>
+            <p>
+              Use this form to add a subject. You can add the code, title and
+              description.
+            </p>
+          </div>
         </div>
-        {/* Form to add a new subject */}
-        <div className="form">
-          <div className="form-input-group">
-            <div className="form-input">
-              <label>Title</label>
-              <input
-                type="text"
-                name="title"
-                value={newSubjectData.title}
-                onChange={handleNewSubjectInputChange}
-                required
-              />
+        <div className="container-stack-horizontal">
+          <div className="container-sidebar">
+            <div className="stack-title-card">
+              <i className="fa-regular fa-folder"></i>
+              <h1>{newSubjectData.code}</h1>
             </div>
-            <div className="form-input">
-              <label>Code</label>
-              <input
-                type="text"
-                name="code"
-                value={newSubjectData.code}
-                onChange={handleNewSubjectInputChange}
-                required
-              />
+            <div className="divider-horizontal"></div>
+            <div className="stack-details">
+              <div className="stack-progress">
+                <div className="progress-circle"></div>
+                <div className="progress-line"></div>
+                <span className="stack-name">{newSubjectData.code}</span>
+              </div>
             </div>
           </div>
-          <div className="form-input-group">
-            <div className="form-input">
-              <label>Description (Optional)</label>
-              <input
-                type="text"
-                name="description"
-                value={newSubjectData.description}
-                onChange={handleNewSubjectInputChange}
-              />
+          <div className="container-card">
+            <div className="container-card-header">
+              <h2>Add Subject</h2>
+            </div>
+            <hr className="divider-horizontal" />
+            <div className="container-card-form form">
+              <div className="form-input">
+                <label htmlFor="code">Subject Code</label>
+                <input
+                  type="text"
+                  id="code"
+                  name="code"
+                  placeholder="CSE101"
+                  className="form-control"
+                  value={newSubjectData.code}
+                  onChange={handleNewSubjectInputChange}
+                />
+              </div>
+              <div className="form-input">
+                <label htmlFor="title">Title</label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  placeholder="Introduction to Computer Science"
+                  className="form-control"
+                  value={newSubjectData.title}
+                  onChange={handleNewSubjectInputChange}
+                />
+              </div>
+              <div className="form-input">
+                <label>Description (Optional)</label>
+                <input
+                  type="text"
+                  name="description"
+                  value={newSubjectData.description}
+                  onChange={handleNewSubjectInputChange}
+                />
+              </div>
+              <div className="form-input form-btns">
+                <Link className="btn btn-secondary" to="/resources">
+                  Cancel
+                </Link>
+                <button className="btn btn-primary" onClick={handleAddSubject}>
+                  Add Subject
+                </button>
+              </div>
             </div>
           </div>
-          <button className="btn btn-primary" onClick={handleAddSubject}>
-            Add Subject
-          </button>
         </div>
       </div>
     </>

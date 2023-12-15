@@ -12,21 +12,24 @@ interface Props {
 
 const Popup: React.FC<Props> = ({ status, message, title }) => {
   return (
-    <div className={`popup ${status}`}>
-      <div className="popup-content">
-        <div className="popup-message">
-          <p className="popup-status">{message}</p>
-          <p className="popup-title">{title}</p>
+    <>
+      <div className={`snackbar ${status}`}>
+        <div className="snackbar-icon">
+          <i
+            className={`fa-sharp fa-solid fa-circle-${
+              status == "error" ? "exclamation" : "check"
+            }`}
+          ></i>
         </div>
-        <div className="popup-icon">
-          {status === "success" ? (
-            <i className="fa-sharp fa-regular fa-circle-check"></i>
-          ) : (
-            <i className="fa-sharp fa-regular fa-circle-xmark"></i>
-          )}
+        <div className="snackbar-details">
+          <div className="snackbar-title">{title}</div>
+          <div className="snackbar-message">{message}</div>
+        </div>
+        <div className="snackbar-progress">
+          <div className="snackbar-progress-bar"></div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
