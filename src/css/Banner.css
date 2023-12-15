@@ -68,6 +68,23 @@
   white-space: nowrap;
 }
 
+.news-banner-text p {
+  display: inline-block;
+  animation: scrollText 20s linear infinite;
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 .news-banner .btn i {
   margin-left: 0.5rem;
 }

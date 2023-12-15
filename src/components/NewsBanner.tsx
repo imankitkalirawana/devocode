@@ -6,8 +6,10 @@ const NewsBanner = () => {
     <div className="news-banner">
       <span className="news-banner-icon success-icon">New</span>
       <span className="news-banner-text">
-        Contribute to the community by adding resources and study materials, to
-        make it free and accessible to everyone.
+        <p>
+          Contribute to the community by adding resources and study materials,
+          to make it free and accessible to everyone.
+        </p>
       </span>
       <Link
         to={"/contribute"}
