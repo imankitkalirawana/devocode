@@ -1,5 +1,3 @@
-// AddedTime.tsx
-
 import { useEffect, useState } from "react";
 
 function AddedTime({ dateString }: any) {
@@ -7,10 +5,15 @@ function AddedTime({ dateString }: any) {
 
   useEffect(() => {
     const calculateRelativeTime = () => {
-      const storedDate = new Date(dateString).getTime(); // Convert to number
-      const currentDate = new Date().getTime(); // Convert to number
+      const storedDate = new Date(dateString);
 
-      const timeDifference = currentDate - storedDate - 14400000;
+      const istOffset = 5.5 * 60 * 60 * 1000;
+      const storedDateIST = new Date(storedDate.getTime() + istOffset);
+
+      const currentDate = new Date();
+      const currentDateIST = new Date(currentDate.getTime() + istOffset);
+
+      const timeDifference = currentDateIST.getTime() - storedDateIST.getTime();
       const seconds = Math.floor(timeDifference / 1000);
       const minutes = Math.floor(seconds / 60);
       const hours = Math.floor(minutes / 60);
