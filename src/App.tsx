@@ -20,6 +20,7 @@ import API_BASE_URL from "./config";
 import ServerError from "./components/ServerError";
 import Home from "./components/Home";
 import Logs from "./components/Logs";
+import Contribute from "./components/Contribute";
 
 import "./App.css";
 import { useEffect, useState } from "react";
@@ -66,6 +67,7 @@ function App() {
             <Route path="/login" element={<Login />} />
 
             <Route path="/logs" element={<Logs />} />
+            <Route path="/contribute" element={<Contribute />} />
 
             <Route
               path="/resources/add"
