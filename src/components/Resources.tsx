@@ -124,10 +124,17 @@ const Resources = () => {
             <div className="section-content">
               <div className="section-menu">
                 {subjects
-                  .filter((subject) =>
-                    subject.code
-                      .toLowerCase()
-                      .includes(searchQuery.toLowerCase())
+                  .filter(
+                    (subject) =>
+                      subject.code
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase()) ||
+                      subject.title
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase()) ||
+                      subject.description
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase())
                   )
                   .map((subject, index) => (
                     <div

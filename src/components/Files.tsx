@@ -208,10 +208,14 @@ const Files: React.FC = () => {
                   <div className="section-content">
                     <div className="section-menu">
                       {files
-                        .filter((file) =>
-                          file.title
-                            .toLowerCase()
-                            .includes(searchQuery.toLowerCase())
+                        .filter(
+                          (file) =>
+                            file.title
+                              .toLowerCase()
+                              .includes(searchQuery.toLowerCase()) ||
+                            file.description
+                              .toLowerCase()
+                              .includes(searchQuery.toLowerCase())
                         )
                         .map((file, index) => (
                           <div
@@ -231,7 +235,9 @@ const Files: React.FC = () => {
                                   <h3 className="section-card-title-short">
                                     {file.title}
                                   </h3>
-                                  <p className="section-card-title">{}</p>
+                                  <p className="section-card-title">
+                                    {file.description}
+                                  </p>
                                 </div>
                               </div>
 
