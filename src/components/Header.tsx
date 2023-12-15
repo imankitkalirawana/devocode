@@ -97,39 +97,31 @@ const Header = () => {
                   Resources
                 </Link>
               </li>
+              <li className="list-items-item">
+                <a
+                  href="https://divinelydeveloper.me"
+                  className="list-items-link"
+                >
+                  About
+                </a>
+              </li>
+              <li className="list-items-item">
+                <a
+                  href="https://github.com/imankitkalirawana"
+                  className="list-items-link"
+                >
+                  Github
+                </a>
+              </li>
               {loggedInUser ? (
                 <>
                   <li className="list-items-item">
-                    <Link to="/resources/add" className="list-items-link">
-                      Add
-                    </Link>
-                  </li>
-                  <li className="list-items-item">
-                    <Link className="list-items-link" to="/resources/update">
-                      Update
+                    <Link to="/logs" className="list-items-link">
+                      Logs
                     </Link>
                   </li>
                 </>
-              ) : (
-                <>
-                  <li className="list-items-item">
-                    <a
-                      href="https://divinelydeveloper.me"
-                      className="list-items-link"
-                    >
-                      About
-                    </a>
-                  </li>
-                  <li className="list-items-item">
-                    <a
-                      href="https://github.com/imankitkalirawana"
-                      className="list-items-link"
-                    >
-                      Github
-                    </a>
-                  </li>
-                </>
-              )}
+              ) : null}
             </ul>
           </nav>
         </div>

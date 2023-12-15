@@ -391,6 +391,34 @@
   margin-bottom: 0.5rem;
 }
 
+/* logs */
+
+.container-logs {
+  display: flex;
+  flex-direction: column;
+  max-height: 400px;
+  overflow: scroll;
+  padding: 0px;
+}
+
+.container-logs .card-body {
+  display: flex;
+  grid-gap: 0.5rem;
+  line-height: 30px;
+}
+
+.container-logs .card-title {
+  background: var(--lighter);
+  text-align: center;
+  width: 50px;
+}
+
+.container-logs .card-text {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--faded);
+}
+
 @media (max-width: 768px) {
   .container-stack-horizontal {
     flex-direction: column;

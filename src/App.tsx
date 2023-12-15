@@ -19,6 +19,7 @@ import { Analytics } from "@vercel/analytics/react";
 import API_BASE_URL from "./config";
 import ServerError from "./components/ServerError";
 import Home from "./components/Home";
+import Logs from "./components/Logs";
 
 import "./App.css";
 import { useEffect, useState } from "react";
@@ -63,7 +64,8 @@ function App() {
             <Route path="/" element={<Home />} />
             {/* login route*/}
             <Route path="/login" element={<Login />} />
-            {/* register route*/}
+
+            <Route path="/logs" element={<Logs />} />
 
             <Route
               path="/resources/add"
