@@ -4,8 +4,6 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import API_BASE_URL from "../config";
 import Loading from "./Loading";
 import ServerError from "./ServerError";
-import Popup from "reactjs-popup";
-import AddedTime from "../functions/AddedTime";
 import IsLogged from "../functions/IsLogged";
 
 const resourceType = [
@@ -30,7 +28,7 @@ interface Subject {
 }
 
 const ResourcesDetails = () => {
-  const { isToken } = IsLogged();
+  IsLogged();
   const { subjectId } = useParams();
   const [subject, setSubject] = useState<Subject>({} as Subject);
   const [loading, setLoading] = useState(true);

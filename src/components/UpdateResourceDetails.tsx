@@ -23,12 +23,10 @@ const UpdateResourceDetails = () => {
   const { subjectId, resourceType } = useParams();
   const [subject, setSubject] = useState<Subject | null>(null);
   const [files, setFiles] = useState<File[]>([]);
-  const [error, setError] = useState(0);
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
   const [title, setTitle] = useState("");
   const [file, setFile] = useState<any>(null);
-  const [searchQuery, setSearchQuery] = useState("");
 
   const [newData, setNewData] = useState({
     title: "",
@@ -63,7 +61,6 @@ const UpdateResourceDetails = () => {
       .then((res) => {
         setFiles(res.data);
         if (res.data.length === 0) {
-          setError(1);
         }
       })
       .catch((err) => {
