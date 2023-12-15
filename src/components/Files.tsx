@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import API_BASE_URL from "../config";
@@ -37,6 +37,7 @@ const Files: React.FC = () => {
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
   const [title, setTitle] = useState("");
+  const navigate = useNavigate();
 
   const resetPopup = () => {
     setTimeout(() => {
@@ -118,6 +119,7 @@ const Files: React.FC = () => {
               setMessage("Deleted");
               setTitle("Success");
               resetPopup();
+              navigate(`/resources/${resourceType}/${subjectId}`);
             })
             .catch((err) => {
               console.log(err);
@@ -201,106 +203,114 @@ const Files: React.FC = () => {
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />
                   </div>
-                  {files
-                    .filter((file) =>
-                      file.title
-                        .toLowerCase()
-                        .includes(searchQuery.toLowerCase())
-                    )
-                    .map((file, index) => (
-                      <div
-                        onClick={() => (
-                          window.open(`${API_BASE_URL}/uploads/${file.file}`),
-                          "_blank"
-                        )}
-                        key={index}
-                        className="section-card"
-                      >
-                        <div className="section-card-upper">
-                          <div className="section-card-upper-left">
-                            <i className="fa-solid fa-folder"></i>
-                            <div className="section-card-details">
-                              <h3 className="section-card-title-short">
-                                {file.title}
-                              </h3>
-                              <p className="section-card-title">
-                                {/* {subject.title} */}
-                              </p>
-                            </div>
-                          </div>
-
+                  <div className="section-content">
+                    <div className="section-menu">
+                      {files
+                        .filter((file) =>
+                          file.title
+                            .toLowerCase()
+                            .includes(searchQuery.toLowerCase())
+                        )
+                        .map((file, index) => (
                           <div
-                            className="section-card-btn"
-                            onClick={(event) => {
-                              event.stopPropagation();
-                            }}
+                            onClick={() => (
+                              window.open(
+                                `${API_BASE_URL}/uploads/${file.file}`
+                              ),
+                              "_blank"
+                            )}
+                            key={index}
+                            className="section-card"
                           >
-                            <button className="btn btn-faded">
-                              <i className="fa-solid fa-ellipsis-vertical"></i>
-                            </button>
-                            <div className="section-dropdown-content">
-                              <a
-                                className="section-dropdown-item"
-                                href={`${API_BASE_URL}/uploads/${file.file}`}
-                                target="_blank"
-                              >
-                                View
-                              </a>
-                              <a
-                                className="section-dropdown-item"
-                                // href={`${API_BASE_URL}/uploads/${file.file}`}
-                                onClick={() => handleDownload(file.file)}
-                              >
-                                Download
-                              </a>
+                            <div className="section-card-upper">
+                              <div className="section-card-upper-left">
+                                <i className="fa-solid fa-folder"></i>
+                                <div className="section-card-details">
+                                  <h3 className="section-card-title-short">
+                                    {file.title}
+                                  </h3>
+                                  <p className="section-card-title">
+                                    {/* {subject.title} */}
+                                  </p>
+                                </div>
+                              </div>
 
-                              {isToken && (
-                                <>
-                                  <Link
+                              <div
+                                className="section-card-btn"
+                                onClick={(event) => {
+                                  event.stopPropagation();
+                                }}
+                              >
+                                <button className="btn btn-faded">
+                                  <i className="fa-solid fa-ellipsis-vertical"></i>
+                                </button>
+                                <div className="section-dropdown-content">
+                                  <a
                                     className="section-dropdown-item"
-                                    to={`/resources/update/${resourceType}/update/${file._id}`}
+                                    href={`${API_BASE_URL}/uploads/${file.file}`}
+                                    target="_blank"
                                   >
-                                    Edit
-                                  </Link>
-                                  <Popup
-                                    trigger={
-                                      <span className="section-dropdown-item btn-danger">
-                                        Delete
-                                      </span>
-                                    }
+                                    View
+                                  </a>
+                                  <a
+                                    className="section-dropdown-item"
+                                    // href={`${API_BASE_URL}/uploads/${file.file}`}
+                                    onClick={() => handleDownload(file.file)}
                                   >
+                                    Download
+                                  </a>
+
+                                  {isToken && (
                                     <>
-                                      <div className="popup">
-                                        <div className="popup-upper">
-                                          <div className="popup-title">
+                                      <Link
+                                        className="section-dropdown-item"
+                                        to={`/resources/update/${resourceType}/update/${file._id}`}
+                                      >
+                                        Edit
+                                      </Link>
+                                      <Popup
+                                        trigger={
+                                          <span className="section-dropdown-item btn-danger">
                                             Delete
+                                          </span>
+                                        }
+                                      >
+                                        <>
+                                          <div className="popup">
+                                            <div className="popup-upper">
+                                              <div className="popup-title">
+                                                Delete
+                                              </div>
+                                              <div className="popup-message">
+                                                Are you sure?
+                                              </div>
+                                            </div>
+                                            <hr className="divider-horizontal" />
+                                            <div className="popup-btns">
+                                              <button
+                                                className="btn btn-danger"
+                                                onClick={handleDelete(file._id)}
+                                              >
+                                                Delete
+                                              </button>
+                                            </div>
                                           </div>
-                                          <div className="popup-message">
-                                            Are you sure?
-                                          </div>
-                                        </div>
-                                        <hr className="divider-horizontal" />
-                                        <div className="popup-btns">
-                                          <button
-                                            className="btn btn-danger"
-                                            onClick={handleDelete(file._id)}
-                                          >
-                                            Delete
-                                          </button>
-                                        </div>
-                                      </div>
+                                        </>
+                                      </Popup>
                                     </>
-                                  </Popup>
-                                </>
-                              )}
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                            <div className="section-card-lower">
+                              {file.filesize
+                                ? `${parseInt(file.filesize)}MB`
+                                : ""}
                             </div>
                           </div>
-                        </div>
-                        <div className="section-card-lower">
-                          {file.filesize ? `${parseInt(file.filesize)}MB` : ""}
-                        </div>
-                      </div>
-                    ))}
+                        ))}
+                    </div>
+                  </div>
                 </>
               ) : (
                 <div className="section-error">
