@@ -306,6 +306,7 @@
 
 .section-error img {
   width: 100%;
+  max-width: 400px;
 }
 
 /* section warning  */
@@ -358,6 +359,10 @@
 
 .login-form {
   max-width: 320px;
+}
+
+.login-form .btn {
+  width: 100%;
 }
 
 .form {
