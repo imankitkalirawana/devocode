@@ -171,6 +171,11 @@ const UpdateFile = () => {
             <div className="stack-progress">
               <div className="progress-circle"></div>
               <div className="progress-line"></div>
+              <span className="stack-name">Update</span>
+            </div>
+            <div className="stack-progress">
+              <div className="progress-circle"></div>
+              <div className="progress-line"></div>
               <span className="stack-name">{resourceType}</span>
             </div>
           </div>

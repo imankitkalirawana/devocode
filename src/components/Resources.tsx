@@ -102,6 +102,13 @@ const Resources = () => {
               <i className="fas fa-chevron-right breadcrumbs-item"></i>
               <span className="breadcrumbs-item selected">Subjects</span>
             </div>
+            <div className="add-btn">
+              {isToken && (
+                <Link className="btn btn-primary" to="/resources/add">
+                  Add Subject
+                </Link>
+              )}
+            </div>
             {/* search */}
             <div className="form-input">
               <label htmlFor="search">Search</label>

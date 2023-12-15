@@ -142,13 +142,23 @@ const Files: React.FC = () => {
                 <div className="progress-line"></div>
                 <span className="stack-name">{newSubjectData.code}</span>
               </div>
+              <div className="stack-progress">
+                <div className="progress-circle"></div>
+                <div className="progress-line"></div>
+                <span className="stack-name">Add</span>
+              </div>
+              <div className="stack-progress">
+                <div className="progress-circle"></div>
+                <div className="progress-line"></div>
+                <span className="stack-name">Subject</span>
+              </div>
             </div>
           </div>
           <div className="container-card">
             <div className="container-card-header">
               <h2>Add Subject</h2>
             </div>
-            <hr className="divider-horizontal" />
+            <hr className="divider-horizontal" /> 
             <div className="container-card-form form">
               <div className="form-input">
                 <label htmlFor="code">Subject Code</label>

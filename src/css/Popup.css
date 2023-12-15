@@ -61,6 +61,7 @@
   min-width: 300px;
   overflow: hidden;
   animation: Popdown 5s ease-in-out;
+  transform: translateY(100%);
 }
 
 @keyframes Popdown {

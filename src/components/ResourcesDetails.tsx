@@ -114,31 +114,6 @@ const ResourcesDetails = () => {
                       </div>
                     </div>
                   </div>
-                  // <Link
-                  //   to={`/resources/${resource}/${subject._id}`}
-                  //   key={index}
-                  //   className="section-list-item"
-                  // >
-                  //   <div className="section-list-item-mini-details">
-                  //     <i className="fa-solid fa-folder"></i>
-                  //   </div>
-                  //   <div className="section-list-item-main-details">
-                  //     <h3
-                  //       className="section-list-item-title"
-                  //       style={
-                  //         resource.length <= 4
-                  //           ? { textTransform: "uppercase" }
-                  //           : {}
-                  //       }
-                  //     >
-                  //       {resource}
-                  //     </h3>
-                  //     <p className="section-list-item-description"></p>
-                  //   </div>
-                  //   <div className="section-list-item-btn">
-                  //     <button className="btn btn-primary">View</button>
-                  //   </div>
-                  // </Link>
                 ))}
             </div>
           </div>

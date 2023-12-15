@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Popup from "reactjs-popup";
 import API_BASE_URL from "../config";
+import CustomPopup from "./Popup";
 // import "reactjs-popup/dist/index.css";
 
 interface Subject {
@@ -15,6 +16,22 @@ interface Subject {
 const UpdateSubject = () => {
   const { subjectId } = useParams();
   const [subject, setSubject] = useState<Subject>({} as Subject);
+  const [status, setStatus] = useState("idle");
+  const [title, setTitle] = useState("");
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+
+  const resetPopup = () => {
+    setTimeout(() => {
+      setStatus("idle");
+    }, 5000);
+  };
+
+  const redirect = () => {
+    setTimeout(() => {
+      navigate("/resources");
+    }, 6000);
+  };
 
   useEffect(() => {
     axios
@@ -29,6 +46,13 @@ const UpdateSubject = () => {
 
   // update subject data
   const handleSubmit = () => {
+    if (subject.code === "" || subject.title === "") {
+      setStatus("error");
+      setTitle("Error");
+      setMessage("Empty Fields");
+      resetPopup();
+      return;
+    }
     axios
       .put(`${API_BASE_URL}/api/resources/subjects/${subjectId}`, subject, {
         headers: {
@@ -37,12 +61,19 @@ const UpdateSubject = () => {
       })
       .then((res) => {
         console.log(res.data);
+        setStatus("success");
+        setTitle("Updated");
+        setMessage("Subject updated successfully");
+        resetPopup();
       })
       .catch((err) => {
         console.log(err);
+        setStatus("error");
+        setTitle("Error");
+        setMessage("Something went wrong");
+        resetPopup();
       });
-
-    window.location.href = "/resources/update";
+    redirect();
   };
 
   //   delete subject data
@@ -55,91 +86,138 @@ const UpdateSubject = () => {
       })
       .then((res) => {
         console.log(res.data);
+        setStatus("success");
+        setTitle("Deleted");
+        setMessage("Subject deleted successfully");
+        resetPopup();
       })
       .catch((err) => {
         console.log(err);
+        setStatus("error");
+        setTitle("Error");
+        setMessage("Something went wrong");
+        resetPopup();
       });
-
-    window.location.href = "/resources/update";
+    redirect();
   };
 
   return (
-    <div className="section resources">
-      {/* breadcrumbs */}
-      <div className="breadcrumbs">
-        <Link className="breadcrumbs-item" to="/">
-          Home
-        </Link>
-        <i className="fas fa-chevron-right breadcrumbs-item"></i>
-        <Link className="breadcrumbs-item" to="/resources/update">
-          Update
-        </Link>
-        <i className="fas fa-chevron-right breadcrumbs-item"></i>
-        <span className="breadcrumbs-item selected">{subject.code}</span>
+    <div className="container-fluid">
+      {status === "success" && (
+        <CustomPopup title={title} message={message} status={status} />
+      )}
+      {status === "error" && (
+        <CustomPopup title={title} message={message} status={status} />
+      )}
+
+      <div className="container-stack">
+        <div className="btn btn-slim btn-faded">
+          <Link to="/resources">
+            <i className="fa-regular fa-arrow-left icon-left"></i>Back
+          </Link>
+        </div>
+        <div className="container-narrative">
+          <h1>Update Subject</h1>
+          <p>
+            Use this form to update a subject. You can update the code, title,
+            and description.
+          </p>
+        </div>
       </div>
-      <h2 className="section-title">Update Subject</h2>
-      <div className="form">
-        <div className="form-input-group">
-          <div className="form-input">
-            <label htmlFor="code">Subject Code</label>
-            <input
-              type="text"
-              name="code"
-              id="code"
-              className="form-control"
-              value={subject.code}
-              onChange={(e) => setSubject({ ...subject, code: e.target.value })}
-            />
+      <div className="container-stack-horizontal">
+        <div className="container-sidebar">
+          <div className="stack-title-card">
+            <i className="fa-regular fa-file"></i>
+            <h1>{subject.code}</h1>
           </div>
-          <div className="form-input">
-            <label htmlFor="title">Subject Title</label>
-            <input
-              type="text"
-              name="title"
-              id="title"
-              className="form-control"
-              value={subject.title}
-              onChange={(e) =>
-                setSubject({ ...subject, title: e.target.value })
-              }
-            />
-          </div>
-        </div>
-        <div className="form-input-group">
-          <div className="form-input">
-            <label htmlFor="description">Subject Description</label>
-            <textarea
-              name="description"
-              id="description"
-              className="form-control"
-              value={subject.description}
-              onChange={(e) =>
-                setSubject({ ...subject, description: e.target.value })
-              }
-            ></textarea>
-          </div>
-        </div>
-        <button onClick={handleSubmit} className="btn btn-primary">
-          Update Subject
-        </button>
-        <Popup trigger={<button className="btn btn-danger">Delete</button>}>
-          <>
-            <div className={`popup`}>
-              <div className="popup-content">
-                <div className="popup-message">
-                  <p className="popup-status">Delete</p>
-                  <p className="popup-title">Are you sure?</p>
-                </div>
-                <div className="popup-icon">
-                  <i
-                    onClick={handleDelete}
-                    className="fa-sharp fa-regular fa-circle-check"
-                  ></i>
-                </div>
-              </div>
+          <div className="divider-horizontal"></div>
+          <div className="stack-details">
+            <div className="stack-progress">
+              <div className="progress-circle"></div>
+              <div className="progress-line"></div>
+              <span className="stack-name">{subject.code}</span>
             </div>
-          </>
-        </Popup>
+            <div className="stack-progress">
+              <div className="progress-circle"></div>
+              <div className="progress-line"></div>
+              <span className="stack-name">Update</span>
+            </div>
+            <div className="stack-progress">
+              <div className="progress-circle"></div>
+              <div className="progress-line"></div>
+              <span className="stack-name">Subject</span>
+            </div>
+          </div>
+        </div>
+        <div className="container-card">
+          <div className="container-card-header">
+            <h2>Update Subject</h2>
+          </div>
+          <hr className="divider-horizontal" />
+          <div className="container-card-form form">
+            <div className="form-input">
+              <label htmlFor="code">Code</label>
+              <input
+                type="text"
+                name="code"
+                id="code"
+                className="form-control"
+                value={subject.code}
+                onChange={(e) =>
+                  setSubject({ ...subject, code: e.target.value })
+                }
+              />
+            </div>
+            <div className="form-input">
+              <label htmlFor="title">Title</label>
+              <input
+                type="text"
+                name="title"
+                id="title"
+                className="form-control"
+                value={subject.title}
+                onChange={(e) =>
+                  setSubject({ ...subject, title: e.target.value })
+                }
+              />
+            </div>
+            <div className="form-input">
+              <label htmlFor="description">Description</label>
+              <textarea
+                name="description"
+                id="description"
+                className="form-control"
+                value={subject.description}
+                onChange={(e) =>
+                  setSubject({ ...subject, description: e.target.value })
+                }
+              ></textarea>
+            </div>
+            <div className="form-input form-btns">
+              <Popup
+                trigger={<button className="btn btn-danger">Delete</button>}
+              >
+                <>
+                  <div className="popup">
+                    <div className="popup-upper">
+                      <div className="popup-title">Delete</div>
+                      <div className="popup-message">Are you sure?</div>
+                    </div>
+                    <hr className="divider-horizontal" />
+                    <div className="popup-btns">
+                      <button className="btn btn-danger" onClick={handleDelete}>
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </>
+              </Popup>
+              <button className="btn btn-primary" onClick={handleSubmit}>
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -176,6 +176,16 @@ const Files: React.FC = () => {
                   {resourceType}
                 </span>
               </div>
+              <div className="add-btn">
+                {isToken && (
+                  <Link
+                    className="btn btn-primary"
+                    to={`/resources/update/${resourceType}/${subjectId}`}
+                  >
+                    Add {resourceType}
+                  </Link>
+                )}
+              </div>
               {!error ? (
                 <>
                   <h2 className="section-title">{resourceType}</h2>
