@@ -217,6 +217,8 @@
 .section-card-lower {
   font-size: 12px;
   color: var(--faded);
+  display: flex;
+  justify-content: space-between;
 }
 
 .section-card-btn {

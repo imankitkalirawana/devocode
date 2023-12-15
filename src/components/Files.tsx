@@ -7,6 +7,7 @@ import ServerError from "./ServerError";
 import Popup from "reactjs-popup";
 import CustomPopup from "./Popup";
 import IsLogged from "../functions/IsLogged";
+import AddedTime from "../functions/AddedTime";
 
 interface Subject {
   code: string;
@@ -23,6 +24,7 @@ interface File {
   description: string;
   file: string;
   filesize: string;
+  addedDate: Date;
 }
 
 const Files: React.FC = () => {
@@ -224,14 +226,12 @@ const Files: React.FC = () => {
                           >
                             <div className="section-card-upper">
                               <div className="section-card-upper-left">
-                                <i className="fa-solid fa-folder"></i>
+                                <i className="fa-solid fa-file"></i>
                                 <div className="section-card-details">
                                   <h3 className="section-card-title-short">
                                     {file.title}
                                   </h3>
-                                  <p className="section-card-title">
-                                    {/* {subject.title} */}
-                                  </p>
+                                  <p className="section-card-title">{}</p>
                                 </div>
                               </div>
 
@@ -303,9 +303,12 @@ const Files: React.FC = () => {
                               </div>
                             </div>
                             <div className="section-card-lower">
-                              {file.filesize
-                                ? `${parseInt(file.filesize)}MB`
-                                : ""}
+                              <AddedTime dateString={file.addedDate} />
+                              <span>
+                                {file.filesize
+                                  ? `${parseInt(file.filesize)}MB`
+                                  : ""}
+                              </span>
                             </div>
                           </div>
                         ))}
