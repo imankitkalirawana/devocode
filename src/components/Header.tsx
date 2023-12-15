@@ -18,6 +18,7 @@ const Header = () => {
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
   const [isToken, setIsToken] = useState(false);
   const navigate = useNavigate();
+
   // get current url
   const location = useLocation();
 
@@ -69,6 +70,7 @@ const Header = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
     setLoggedInUser(null);
     setIsToken(false);
     navigate("/login");
@@ -85,56 +87,80 @@ const Header = () => {
             </h1>
           </Link>
           {/* dropdown menu */}
-          <nav className="dropdown-menu">
-            <ul className="list-items">
-              <li className="list-items-item">
-                <Link to="/" className="list-items-link">
-                  Home
-                </Link>
-              </li>
-              <li className="list-items-item">
-                <Link to="/resources" className="list-items-link">
-                  Resources
-                </Link>
-              </li>
-              <li className="list-items-item">
-                <a
-                  href="https://divinelydeveloper.me"
-                  className="list-items-link"
-                >
-                  About
-                </a>
-              </li>
-              <li className="list-items-item">
-                <a
-                  href="https://github.com/imankitkalirawana"
-                  className="list-items-link"
-                >
-                  Github
-                </a>
-              </li>
-              {loggedInUser ? (
-                <>
-                  <li className="list-items-item">
-                    <Link to="/logs" className="list-items-link">
-                      Logs
-                    </Link>
-                  </li>
-                </>
-              ) : null}
-            </ul>
-          </nav>
+          <ul className="list-items">
+            <li className="list-items-item">
+              <Link to="/" className="list-items-link">
+                Home
+              </Link>
+            </li>
+            <li className="list-items-item">
+              <Link to="/resources" className="list-items-link">
+                Resources
+              </Link>
+            </li>
+            <li className="list-items-item">
+              <a
+                href="https://divinelydeveloper.me"
+                className="list-items-link"
+              >
+                About
+              </a>
+            </li>
+            <li className="list-items-item">
+              <a
+                href="https://github.com/imankitkalirawana"
+                className="list-items-link"
+              >
+                Github
+              </a>
+            </li>
+            {loggedInUser ? (
+              <>
+                <li className="list-items-item">
+                  <Link to="/logs" className="list-items-link">
+                    Logs
+                  </Link>
+                </li>
+              </>
+            ) : null}
+          </ul>
         </div>
         {/* login logout buttons */}
         <div className="auth">
           {isToken ? (
             <>
-              <button
-                className="btn login-register btn-slim"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
+              {/* dropdown */}
+              <div className="header-dropdown">
+                <button className="btn btn-slim">Profile</button>
+                <div className="dropdown-menu">
+                  <ul className="list-items">
+                    <li className="list-items-item">
+                      <Link to="/profile" className="list-items-link">
+                        Account
+                      </Link>
+                    </li>
+                    <li className="list-items-item">
+                      <Link to="/settings" className="list-items-link">
+                        Settings
+                      </Link>
+                    </li>
+                    <li className="list-items-item">
+                      <Link to="/logs" className="list-items-link">
+                        Logs
+                      </Link>
+                    </li>
+
+                    <li className="list-items-item">
+                      <a
+                        className="list-items-link btn-danger"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </>
           ) : (
             <div className="btns">

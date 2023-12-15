@@ -19,6 +19,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Home from "./components/Home";
 import Logs from "./components/Logs";
 import Contribute from "./components/Contribute";
+import Profile from "./components/Profile";
 
 import "./App.css";
 
@@ -38,8 +39,11 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* login route*/}
           <Route path="/login" element={<Login />} />
+          <Route
+            path="/profile"
+            element={<PrivateRoute element={<Profile />} />}
+          />
 
           <Route path="/logs" element={<Logs />} />
           <Route path="/contribute" element={<Contribute />} />

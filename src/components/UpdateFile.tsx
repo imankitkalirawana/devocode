@@ -35,9 +35,6 @@ const UpdateFile = () => {
       });
   }, [resourceId, resourceType]);
 
-  //   update resource data
-
-  //   handle form input
   const handleInput = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {

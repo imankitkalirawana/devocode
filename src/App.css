@@ -103,11 +103,22 @@
 .stack-details .stack-progress:last-child .progress-line {
   height: 0px;
 }
+.container-card-cover {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  grid-gap: 1rem;
+}
+
 .container-card {
   border: 1px solid var(--border);
   padding: 32px;
   border-radius: 8px;
   width: 100%;
+}
+
+.container-card-danger {
+  border: 1px solid var(--danger);
 }
 
 .form-btns {
